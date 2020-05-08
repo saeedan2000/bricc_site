@@ -1,0 +1,40 @@
+nav{
+    border: solid black 2px;
+}
+
+h2{
+    text-align: center;
+}
+
+table{
+    border: 1px solid black;
+    margin: auto;
+}
+
+#calendarTable{
+    border-collapse: collapse;
+}
+
+td{
+    text-align: center;
+}
+
+.calCell{
+    padding: 2px;
+    background-color: gray;
+}
+
+.calButton{
+    height: 50px;
+    width: 60px;
+}
+
+#lanes, #hours{
+    text-align: center;
+    margin-top: 20px;
+    display: none;
+}
+
+#hours {
+    height: 100px;
+}
