@@ -7,4 +7,4 @@ http://briccwebapp-env.eba-ekqffpav.us-east-1.elasticbeanstalk.com/
 
 You can connect to the database with the following command (assuming you have an inbound rule in the security group, and mysql installed):
 
-```mysql -h  aa1xgsg8qe5aw2y.cjuyqly3o6ur.us-east-1.rds.amazonaws.com -P 3306 -u briccdb -p```
+```mysql -h  aa1xgsg8qe5aw2y.cjuyqly3o6ur.us-east-1.rds.amazonaws.com -P 3306 -u briccdb -p ebdb```
