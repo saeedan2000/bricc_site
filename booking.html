@@ -18,40 +18,25 @@
         </nav>
         <h2>Please select a day from the calendar</h2>
         <div id="datePicker">
-            <p id="selectedDate">05 / 12 / 2020</p>
-            <div id="monthPicker">
-                <button class="monthButton" id="prevMonthButton">&lt;</button>
-                <span id="selectedMonth">January 2020</span>
-                <button class="monthButton" id="nextMonthButton">&gt;</button>
+            <p id="selectedDate">Choose a Date</p>
+            <div id="calContainer">
+                <div id="monthPicker">
+                    <button class="monthButton" id="prevMonthButton">&lt;</button>
+                    <span id="selectedMonth"></span>
+                    <button class="monthButton" id="nextMonthButton">&gt;</button>
+                </div>
+                <div id="dayOfWeek">
+                    <p>Sun</p>
+                    <p>Mon</p>
+                    <p>Tue</p>
+                    <p>Wed</p>
+                    <p>Thu</p>
+                    <p>Fri</p>
+                    <p>Sat</p>
+                </div>
+                <table id="calendarTable">
+                </table>
             </div>
-            <div id="dayOfWeek">
-                <p>Sun</p>
-                <p>Mon</p>
-                <p>Tue</p>
-                <p>Wed</p>
-                <p>Thu</p>
-                <p>Fri</p>
-                <p>Sat</p>
-            </div>
-            <table id="calendarTable">
-            </table>
-        </div>
-        <div id="lanes">
-            <label for="laneSelect">Choose a lane:</label>
-            <select id="laneSelect" class="hidden">
-                <option selected = "selected">lanes</option>
-                <option value="1">Indoor 1</option>
-                <option value="2">Indoor 2</option>
-                <option value="3">Indoor 3</option>
-                <option value="4">Indoor 4</option>
-                <option value="5">Outdoor 1</option>
-                <option value="6">Outdoor 2</option>
-                <option value="7">Outdoor 3</option>
-                <option value="8">Outdoor 4</option>
-            </select>
-        </div>
-        <div id="hours">
-            <p>Available Hours</p>
         </div>
     </body>
 </html>

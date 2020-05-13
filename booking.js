@@ -4,10 +4,22 @@
                         "April", "May", "June", "July",
                         "August", "September", "October",
                         "November", "December"];
+    
+    // stores the date chosen by the user, format yyyy-mm-dd
+    let date;
 
     // shorthand
     function $(id){
         return document.getElementById(id);
+    }
+
+    // take a string or an int of consisting of 1 or 2 numbers, and format it
+    // to two numbers. eg 1 -> 01
+    function f(input) {
+        if (input.length == 1) {
+            return "0" + input;
+        }
+        return input;
     }
 
     /* OLD STUFF, COULD BE USEFUL LATER
@@ -51,7 +63,6 @@
         // fill in empty table cells so that first day will be in correct
         // column, based on what day of the week it is.
         for (let i = 0; i < dayOffset; i++) {
-            console.log("went in");
             curRow.appendChild(document.createElement("td"));
         }
         // now add a table cell for each day of the month
@@ -93,16 +104,55 @@
             oldSelected.classList.remove("selectedDay");
         }
         this.classList.add("selectedDay");
-        let date = this.textContent;
+        let d = f(this.textContent);
         let monthYear = $("selectedMonth").textContent.split(" ");
-        let month = monthNames.indexOf(monthYear[0]) + 1;
-        let display = date + " / " + month + " / " + monthYear[1];
+        let month = f(String(monthNames.indexOf(monthYear[0]) + 1));
+        let display = d + " / " + month + " / " + monthYear[1];
         $("selectedDate").textContent = display;
+        date = monthYear[1] + "-" + month + "-" + d;
+    }
+
+    function toggleCalendar() {
+        let cal = $("calContainer");
+        if (cal.style.display != "block") {
+            cal.style.display = "block";
+        } else {
+            cal.style.display = "none";
+        }
+    }
+
+    function prevMonth() {
+        let monthYear = $("selectedMonth").textContent.split(" ");
+        let month = monthNames.indexOf(monthYear[0]);
+        let year = parseInt(monthYear[1]);
+        if (month == 0) {
+            year--;
+            month = 11;
+        } else {
+            month--;
+        }
+        calendar(month, year);
+    }
+
+    function nextMonth() {
+        let monthYear = $("selectedMonth").textContent.split(" ");
+        let month = monthNames.indexOf(monthYear[0]);
+        let year = parseInt(monthYear[1]);
+        if (month == 11) {
+            year++;
+            month = 0;
+        } else {
+            month++;
+        }
+        calendar(month, year);
     }
    
     window.onload = function() {
         // load the calendar
         let d = new Date();
         calendar(d.getMonth(), d.getFullYear());
+        $("selectedDate").onclick = toggleCalendar;
+        $("prevMonthButton").onclick = prevMonth;
+        $("nextMonthButton").onclick = nextMonth;
     }
 })();
