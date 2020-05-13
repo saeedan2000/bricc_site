@@ -1,3 +1,4 @@
+
 nav {
     border: solid black 2px;
 }
@@ -9,7 +10,8 @@ h2 {
 #datePicker {
     margin: auto;
     width: 100%;
-    max-width: 320px;
+    max-width: 500px;
+    box-shadow: 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 #selectedDate {
@@ -51,9 +53,10 @@ h2 {
 
 td {
     width: calc(100% / 7);
-    min-height: 10px;
+    height: 30px;
     text-align: center;
     border: 1px solid black;
+    font-size: 20px;
 }
 
 .today {
@@ -62,7 +65,8 @@ td {
 }
 
 .selectedDay {
-    background-color: lightblue;
+    background-color: blue;
+    color: white;
 }
 
 #calContainer {
