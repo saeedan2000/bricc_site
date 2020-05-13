@@ -1,22 +1,16 @@
 "use strict";
 (function() {
-    // Currently my biggest concerns about this file in general are that 
-    // A. the number of days in the calendar is hardcoded in to be the number of 
-    //    buttons in the booking.html file
-    // B. even worse, the number of hours bricc is open is hardcoded.
-    //    for now, im using a couple bad global variables for this
-    let startTime = 6;
-    let numHours = 16;
-
-
-    // this variable holds the value of the day selected by the user
-    let date;
+    let monthNames = ["January", "February", "March",
+                        "April", "May", "June", "July",
+                        "August", "September", "October",
+                        "November", "December"];
 
     // shorthand
     function $(id){
         return document.getElementById(id);
     }
 
+    /* OLD STUFF, COULD BE USEFUL LATER
     // check for server response.
     function checkStatus(response) {
         if (response.status >= 200 && response.status < 300) {
@@ -38,105 +32,77 @@
                //error: do something with error
                console.log(error);
            });
-    }
+    } */
 
-    // this function takes the response text from the calendar.php file in the web server
-    // and uses the information in it to populate the calendar buttons with text. It also
-    // set the onclick handler for those buttons to the function selectDay()
-    function loadCalendar(responseText) {
-        let calInfo = JSON.parse(responseText);
-        let calButtons = document.getElementsByClassName("calButton");
-        for (let i = 0; i < calButtons.length; i++) {
-            calButtons[i].textContent = (calInfo[i]).text;
-            calButtons[i].value = (calInfo[i]).value;
-            calButtons[i].onclick = selectDay;
+    // takes a month (0-11) and a year and reloads the calendar for that month
+    function calendar(month, year) {
+        // clear any existing calendar
+        let table = $("calendarTable");
+        table.textContent = '';
+
+        let dayOffset = new Date(year, month).getDay();
+        let daysInMonth = 32 - (new Date(year, month, 32)).getDate();
+        let cur = false;
+        let curDate = new Date();
+        if (curDate.getMonth() == month && curDate.getFullYear() == year) {
+            cur = true;
         }
-    }
-
-    // unhide the lane selection drop down list, and set the date global variable
-    function selectDay() {
-        // temporary
-        console.log(this.value);
-        clearHours();
-        date = this.value;
-        $("lanes").style.display = "block";
-    }
-
-    // this function uses AJAX fetch to get all reservations on the given lane on the given day
-    function ajaxReservations(data) {
-        let url = "http://bricc.us-east-2.elasticbeanstalk.com/read.php"; 
-        fetch(url, {method: "POST", body: data})
-           .then(checkStatus)
-           .then(loadHours)
-           .catch(function(error) {
-               //error: do something with error
-               console.log(error);
-           });
-    }
-
-
-    // this function builds validates the user's choice of lane and builds the 
-    // parameters required to make an API call in order to get all reservations
-    // on that lane on the selected day.
-    function selectLane() {
-        clearHours();
-        let val = parseInt(this.value, 10);
-        if (val && val >= 1 && val <= 8) {
-            let data = new FormData();
-            data.append("date", date);
-            data.append("lane", val);
-            ajaxReservations(data);
+        let curRow = document.createElement("tr");
+        // fill in empty table cells so that first day will be in correct
+        // column, based on what day of the week it is.
+        for (let i = 0; i < dayOffset; i++) {
+            console.log("went in");
+            curRow.appendChild(document.createElement("td"));
         }
-    }
-
-    // this function takes an integer from 1 - 24 (an hour in the 24 hour clock) and 
-    // converts it to a string representing a time in the 12 hour clock, for example "6:00 am"
-    // it assumes a valid parameter.
-    function toTwelve(hr) {
-        let suffix = "am";
-        if (hr >= 12 && hr < 24) {
-            suffix = "pm";
-        }
-        if (hr > 12) {
-            hr = hr - 12
-        }
-        return hr + ":00 " + suffix;
-    }
-
-    // this function loads all available hours for the selected lane and day on the page
-    function loadHours(responseText) {
-        let res = JSON.parse(responseText);
-        console.log(res);
-        let hrContainer = $("hours");
-        hrContainer.style.display = "block";
-        for (let i = 0; i < 16; i++) {
-            let hr = i + startTime;
-            let clashFlag = false;
-            for (let x = 0; x < res.length; x++) {
-                if (hr < (res[x]).end && hr >= (res[x]).start) {
-                    clashFlag = true;
+        // now add a table cell for each day of the month
+        for (let i = 1; i <= daysInMonth; i++) {
+            let td = document.createElement("td");
+            td.textContent = i;
+            td.onclick = selectDay;
+            // if day is today, make it look special
+            if (cur && curDate.getDate() == i) {
+                td.className = "today";
+            }
+            curRow.appendChild(td);
+            // if row is full, append to table and go to next row
+            if (curRow.childElementCount == 7) {
+                table.append(curRow);
+                // if we are not done, create a new row
+                if (i != daysInMonth) {
+                    curRow = document.createElement("tr");
                 }
             }
-            if (!clashFlag) {
-                let hrBox = document.createElement("button");
-                hrBox.textContent = toTwelve(hr);
-                hrBox.value = hr;
-                hrContainer.appendChild(hrBox);
-            }
         }
+        // now add more empty table cells if necessary to finish the last row
+        while (curRow.childElementCount != 7) {
+            curRow.appendChild(document.createElement("td"));
+        }
+        // if the row hasn't been appended, append it
+        if (curRow.parentNode == null) {
+            table.appendChild(curRow);
+        }
+
+        // set the month display correctly
+        $("selectedMonth").textContent = monthNames[month] + " " + year;
     }
 
-    // this function clears all hours currently displayed in the available hours part of the page
-    function clearHours() {
-        let hrs = $("hours");
-        while(hrs.firstChild) {
-            hrs.removeChild(hrs.lastChild);
+    // onclick handler for a day tile
+    function selectDay() {
+        let oldSelected = document.querySelector(".selectedDay");
+        if (oldSelected != null) {
+            oldSelected.classList.remove("selectedDay");
         }
+        this.classList.add("selectedDay");
+        let date = this.textContent;
+        let monthYear = $("selectedMonth").textContent.split(" ");
+        let month = monthNames.indexOf(monthYear[0]) + 1;
+        let display = date + " / " + month + " / " + monthYear[1];
+        $("selectedDate").textContent = display;
     }
    
     window.onload = function() {
-        // load calendar using information from web server
-        ajaxCalendar();
-        $("laneSelect").onchange = selectLane;
+        // load the calendar
+        let d = new Date();
+        calendar(d.getMonth(), d.getFullYear());
     }
 })();

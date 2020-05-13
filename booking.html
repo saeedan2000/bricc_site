@@ -17,108 +17,25 @@
             </a>
         </nav>
         <h2>Please select a day from the calendar</h2>
-        <table id="calendarTable">
-            <tr>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-            </tr>
-            <tr>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-            </tr>
-            <tr>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-            </tr>
-            <tr>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-            </tr>
-            <tr>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-                <td class="calCell">
-                    <button class="calButton"></button>
-                </td>
-            </tr>
-        </table>
+        <div id="datePicker">
+            <p id="selectedDate">05 / 12 / 2020</p>
+            <div id="monthPicker">
+                <button class="monthButton" id="prevMonthButton">&lt;</button>
+                <span id="selectedMonth">January 2020</span>
+                <button class="monthButton" id="nextMonthButton">&gt;</button>
+            </div>
+            <div id="dayOfWeek">
+                <p>Sun</p>
+                <p>Mon</p>
+                <p>Tue</p>
+                <p>Wed</p>
+                <p>Thu</p>
+                <p>Fri</p>
+                <p>Sat</p>
+            </div>
+            <table id="calendarTable">
+            </table>
+        </div>
         <div id="lanes">
             <label for="laneSelect">Choose a lane:</label>
             <select id="laneSelect" class="hidden">

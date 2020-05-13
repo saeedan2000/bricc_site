@@ -1,40 +1,66 @@
-nav{
+nav {
     border: solid black 2px;
 }
 
-h2{
+h2 {
     text-align: center;
 }
 
-table{
-    border: 1px solid black;
+#datePicker {
     margin: auto;
+    width: 100%;
+    max-width: 320px;
 }
 
-#calendarTable{
+#selectedDate {
+    height: 25px;
+    font-size: 22px;
+    text-align: center;
+    border: 1px solid black;
+    margin: 0px;
+}
+
+#monthPicker {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+}
+
+#dayOfWeek {
+    display: flex;
+    justify-content: space-around; 
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+#dayOfWeek > p {
+    /*width: 32px; */
+    text-align: center;
+    width: calc(100% / 7);
+    margin: 0px;
+}
+
+#calendarTable {
+    width: 100%;
+    border: 1px solid black;
     border-collapse: collapse;
 }
 
-td{
+td {
+    width: calc(100% / 7);
+    min-height: 10px;
     text-align: center;
+    border: 1px solid black;
 }
 
-.calCell{
-    padding: 2px;
-    background-color: gray;
+.today {
+    border-color: blue;
+    border-width: 3px;
 }
 
-.calButton{
-    height: 50px;
-    width: 60px;
-}
-
-#lanes, #hours{
-    text-align: center;
-    margin-top: 20px;
-    display: none;
-}
-
-#hours {
-    height: 100px;
+.selectedDay {
+    background-color: lightblue;
 }
