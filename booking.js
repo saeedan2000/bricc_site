@@ -69,7 +69,7 @@
         for (let i = 1; i <= daysInMonth; i++) {
             let td = document.createElement("td");
             td.textContent = i;
-            td.onclick = selectDay;
+            td.onclick = clickDay;
             // if day is today, make it look special
             if (cur && curDate.getDate() == i) {
                 td.className = "today";
@@ -98,7 +98,7 @@
     }
 
     // onclick handler for a day tile
-    function selectDay() {
+    function clickDay() {
         let oldSelected = document.querySelector(".selectedDay");
         if (oldSelected != null) {
             oldSelected.classList.remove("selectedDay");
@@ -110,6 +110,9 @@
         let display = d + " / " + month + " / " + monthYear[1];
         $("selectedDate").textContent = display;
         date = monthYear[1] + "-" + month + "-" + d;
+
+        // make the select day? button appear
+        $("hideCalButton").style.display = "block";
     }
 
     function toggleCalendar() {
@@ -146,6 +149,13 @@
         }
         calendar(month, year);
     }
+
+    // onclick for select day button, basically
+    // hides itself and then hides the calendar.
+    function hideCal() {
+        this.style.display = "none";
+        $("calContainer").style.display = "none";
+    }
    
     window.onload = function() {
         // load the calendar
@@ -154,5 +164,6 @@
         $("selectedDate").onclick = toggleCalendar;
         $("prevMonthButton").onclick = prevMonth;
         $("nextMonthButton").onclick = nextMonth;
+        $("hideCalButton").onclick = hideCal;
     }
 })();

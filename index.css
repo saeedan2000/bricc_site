@@ -115,11 +115,26 @@ td {
     display: none;
 }
 
-.monthButton {
-    height: 40px;
-    width: calc(100% / 7);
-    font-size: 30px;
-    color: #233237;
+.monthButton, #hideCalButton {
     background-color: #984B43;
     border: 0px;
+}
+
+.monthButton {
+    height: 50px;
+    font-size: 30px;
+    width: calc(100% / 7);
+    color: #233237;
+    background-color: #984B43;
+}
+
+#hideCalButton {
+    display: none;
+    height: 35px;
+    width: 100%;
+    color: #233237;
+    font-weight: 600;
+    font-size: 14px;
+    border: 1px solid #984B43;
+    background-color: #EAc67A;
 }
