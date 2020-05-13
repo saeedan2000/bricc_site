@@ -15,9 +15,11 @@ h2 {
 }
 
 #selectedDate {
-    height: 25px;
-    font-size: 22px;
-    text-align: center;
+    height: 45px;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid black;
     margin: 0px;
 }
@@ -27,7 +29,8 @@ h2 {
     border-right: 1px solid black;
     display: flex;
     justify-content: space-between;
-    font-size: 18px;
+    align-items: center;
+    font-size: 22px;
 }
 
 #dayOfWeek {
@@ -71,4 +74,10 @@ td {
 
 #calContainer {
     display: none;
+}
+
+.monthButton {
+    height: 40px;
+    width: calc(100% / 7);
+    font-size: 30px;
 }
