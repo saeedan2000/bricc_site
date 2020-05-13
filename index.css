@@ -13,13 +13,13 @@ nav {
     box-shadow: 0px 5px 2px 1px rgba(0, 0, 0, 0.7);
     display: table;
     padding-right: 100%;
-    padding-left: 80px;
+    padding-left: 70px;
 }
 
 nav > a {
     color: #984B43;
     text-decoration: none;
-    padding: 4px 15px 0px 15px;
+    padding: 4px 30px 0px 30px;
     font-size: 20px;
     display: table-cell;
     white-space: nowrap;
@@ -61,8 +61,6 @@ h2 {
 }
 
 #monthPicker {
-    border-left: 1px solid #984B43;
-    border-right: 1px solid #984B43;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -95,7 +93,7 @@ h2 {
 
 td {
     width: calc(100% / 7);
-    height: 40px;
+    height: 50px;
     text-align: center;
     border: 1px solid #984B43;
     font-size: 20px;
