@@ -151,3 +151,8 @@ td {
 #textContainer {
     text-align: center;
 }
+
+#textBox {
+    width: 500px;
+    height: 300px;
+}

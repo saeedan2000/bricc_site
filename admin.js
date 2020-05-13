@@ -34,5 +34,8 @@
             console.log("query: " + $("textBox").value);
             ajaxCall($("textBox").value);
         }
+        $("clearButton").onclick = function() {
+            $("textBox").value = "";
+        }
     }
 })();
