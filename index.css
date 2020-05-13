@@ -9,19 +9,21 @@ body {
 
 nav {
     background-color: #EAc67A;
-    height: 30px;
     box-shadow: 0px 5px 2px 1px rgba(0, 0, 0, 0.7);
-    display: table;
-    padding-right: 100%;
     padding-left: 70px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
 }
 
 nav > a {
     color: #984B43;
     text-decoration: none;
-    padding: 4px 30px 0px 30px;
+    padding: 4px 30px 4px 30px;
+    width: min-content;
     font-size: 20px;
-    display: table-cell;
+    display: block;
+    margin: 0px;
     white-space: nowrap;
 }
 
@@ -41,7 +43,11 @@ h2 {
     padding: 5px 0px 5px 0px;
 }
 
-#datePicker {
+h3, h4 {
+    text-align: center
+}
+
+#datePicker, #timePicker {
     margin: auto;
     width: 100%;
     max-width: 500px;
@@ -51,7 +57,7 @@ h2 {
     border: 3px solid #984B43;
 }
 
-#selectedDate {
+#selectedDate, #selectedHour {
     height: 45px;
     font-size: 30px;
     display: flex;
@@ -62,7 +68,7 @@ h2 {
     margin: 0px;
 }
 
-#monthPicker {
+#monthPicker, #ampmPicker {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -86,7 +92,7 @@ h2 {
     margin: 0px;
 }
 
-#calendarTable {
+#calendarTable, #hourTable {
     width: 100%;
     border: 1px solid #984B43;
     border-collapse: collapse;
@@ -115,17 +121,20 @@ td {
     display: none;
 }
 
-.monthButton, #hideCalButton {
+.monthButton, #hideCalButton, .timeButton{
     background-color: #984B43;
     border: 0px;
 }
 
-.monthButton {
-    height: 50px;
+.monthButton, .timeButton{
+    display: block;
     font-size: 30px;
+    padding: 8px 0px 8px 0px;
     width: calc(100% / 7);
     color: #233237;
     background-color: #984B43;
+    text-align: center;
+    margin: 0px;
 }
 
 #hideCalButton {
@@ -137,4 +146,8 @@ td {
     font-size: 14px;
     border: 1px solid #984B43;
     background-color: #EAc67A;
+}
+
+#textContainer {
+    text-align: center;
 }

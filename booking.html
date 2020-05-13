@@ -21,9 +21,9 @@
             <p id="selectedDate">Choose a Date</p>
             <div id="calContainer">
                 <div id="monthPicker">
-                    <button class="monthButton" id="prevMonthButton">&lt;</button>
+                    <a class="monthButton" id="prevMonthButton">&lt;</a>
                     <span id="selectedMonth"></span>
-                    <button class="monthButton" id="nextMonthButton">&gt;</button>
+                    <a class="monthButton" id="nextMonthButton">&gt;</a>
                 </div>
                 <div id="dayOfWeek">
                     <p>Sun</p>
@@ -37,6 +37,19 @@
                 <table id="calendarTable">
                 </table>
                 <button id="hideCalButton">^ Hide Calendar ^</button>
+            </div>
+        </div>
+        <div id="timeContainer">
+            <h2>Please select a start time & a number of hours for your reservation</h2>
+            <div id="timePicker">
+                <p id="selectedHour">Choose a Start Time</p>
+                <div id="hourContainer">
+                    <div id="ampmPicker">
+                        <a class="timeButton">&lt;</a>
+                        <span id="selectedMonth">AM</span>
+                        <a class="timeButton">&gt;</a>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
