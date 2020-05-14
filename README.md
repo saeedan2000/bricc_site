@@ -8,3 +8,8 @@ http://briccwebapp-env.eba-ekqffpav.us-east-1.elasticbeanstalk.com/
 You can connect to the database with the following command (assuming you have an inbound rule in the security group, and mysql installed):
 
 ```mysql -h  aa1xgsg8qe5aw2y.cjuyqly3o6ur.us-east-1.rds.amazonaws.com -P 3306 -u briccdb -p ebdb```
+
+The booking system uses a Date Picker UI with multiple elements that are hidden/unhidden. The following diagram demonstrates
+the different states the client can move between.
+
+![Image of State Graph](https://github.com/saeedan2000/bricc_site/bricc_img.png)
