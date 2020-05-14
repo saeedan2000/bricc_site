@@ -10,6 +10,7 @@ You can connect to the database with the following command (assuming you have an
 ```mysql -h  aa1xgsg8qe5aw2y.cjuyqly3o6ur.us-east-1.rds.amazonaws.com -P 3306 -u briccdb -p ebdb```
 
 The booking system uses a Date Picker UI with multiple elements that are hidden/unhidden. The following diagram demonstrates
-the different states the client can move between.
+the different states the client can move between. Please keep in mind that the graph uses a simplified representation of the
+state of the UI, ignoring any and all available lanes as well as any lanes selected by the user.
 
 ![Image of State Graph](https://github.com/saeedan2000/bricc_site/blob/master/bricc_img.png)
