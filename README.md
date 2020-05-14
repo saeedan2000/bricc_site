@@ -12,4 +12,4 @@ You can connect to the database with the following command (assuming you have an
 The booking system uses a Date Picker UI with multiple elements that are hidden/unhidden. The following diagram demonstrates
 the different states the client can move between.
 
-![Image of State Graph](https://github.com/saeedan2000/bricc_site/bricc_img.png)
+![Image of State Graph](https://github.com/saeedan2000/bricc_site/blob/master/bricc_img.png)
