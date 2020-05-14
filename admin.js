@@ -21,7 +21,7 @@
            .then(checkStatus)
            .then(function(responseText) {
                console.log(responseText);
-               $("resContainer").textContent = JSON.stringify(JSON.parse(responseText), undefined, 4);
+               $("resBox").value = JSON.stringify(JSON.parse(responseText), undefined, 4);
            })
            .catch(function(error) {
                //error: do something with error

@@ -148,11 +148,11 @@ td {
     background-color: #EAc67A;
 }
 
-#textContainer {
+#textContainer, #resContainer {
     text-align: center;
 }
 
-#textBox {
+#textBox, #resBox {
     width: 500px;
     height: 300px;
 }
