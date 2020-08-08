@@ -121,7 +121,7 @@ td {
     display: none;
 }
 
-.monthButton, #hideCalButton, .timeButton{
+.monthButton, .timeButton{
     background-color: #984B43;
     border: 0px;
 }

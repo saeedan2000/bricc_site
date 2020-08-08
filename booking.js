@@ -107,12 +107,11 @@
         let d = f(this.textContent);
         let monthYear = $("selectedMonth").textContent.split(" ");
         let month = f(String(monthNames.indexOf(monthYear[0]) + 1));
-        let display = d + " / " + month + " / " + monthYear[1];
+        let display = month + " / " + d + " / " + monthYear[1];
         $("selectedDate").textContent = display;
         date = monthYear[1] + "-" + month + "-" + d;
 
         // make the select day? button appear
-        $("hideCalButton").style.display = "block";
     }
 
     function toggleCalendar() {
