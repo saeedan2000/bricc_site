@@ -123,15 +123,6 @@
         // make the select day? button appear
     }
 
-    function toggleCalendar() {
-        let cal = $("calContainer");
-        if (cal.style.display != "block") {
-            cal.style.display = "block";
-        } else {
-            cal.style.display = "none";
-        }
-    }
-
     function prevMonth() {
         let monthYear = $("selectedMonth").textContent.split(" ");
         let month = monthNames.indexOf(monthYear[0]);
@@ -157,17 +148,9 @@
         }
         calendar(month, year);
     }
-
-    // onclick for select day button, basically
-    // hides itself and then hides the calendar.
-    function hideCal() {
-        this.style.display = "none";
-        $("calContainer").style.display = "none";
-    }
    
     window.onload = function() {
         ajaxInitInfo();
-        $("selectedDate").onclick = toggleCalendar;
         $("prevMonthButton").onclick = prevMonth;
         $("nextMonthButton").onclick = nextMonth;
     }
