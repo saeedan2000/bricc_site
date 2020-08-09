@@ -48,6 +48,8 @@
            .then(function(responseText) {
                 let initInfo = JSON.parse(responseText);
                 today = initInfo.today.split("-");
+                normalHours = initInfo.default;
+                specialHours = initInfo.specialHours;
                 calendar(parseInt(today[1]) - 1, parseInt(today[0]));
            })
            .catch(function(error) {
