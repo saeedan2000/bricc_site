@@ -164,6 +164,5 @@
         $("selectedDate").onclick = toggleCalendar;
         $("prevMonthButton").onclick = prevMonth;
         $("nextMonthButton").onclick = nextMonth;
-        $("hideCalButton").onclick = hideCal;
     }
 })();
