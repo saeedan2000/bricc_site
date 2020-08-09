@@ -173,8 +173,8 @@
         // if not use normal hours
         if (!specialFlag) {
             console.log(normalHours);
-            start = normalHours.start;
-            numHours = normalHours.num_hours;
+            start = parseInt(normalHours.start);
+            numHours = parseInt(normalHours.num_hours);
         }
         console.log ("start: " + start + " and num hours: " + numHours);
         // load am hours
