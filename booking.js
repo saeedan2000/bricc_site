@@ -8,6 +8,14 @@
     // stores the date chosen by the user, format yyyy-mm-dd
     let date;
 
+    // store todays date as an array of year, month, day
+    let today;
+    // store normal hours (start and num hours)
+    let normalHours;
+    // store any days with special hours (each date has a start and num hours)
+    let specialHours
+
+
     // shorthand
     function $(id){
         return document.getElementById(id);
@@ -37,11 +45,12 @@
         let url = "http://briccwebapp-env.eba-ekqffpav.us-east-1.elasticbeanstalk.com/pickerInfo.php"; 
         fetch(url)
            .then(checkStatus)
-           .then(function(response) {
-               console.log(response);
+           .then(function(responseText) {
+                let initInfo = JSON.parse(responseText);
+                today = initInfo.today.split("-");
+                calendar(today[1], today[0]);
            })
            .catch(function(error) {
-               //error: do something with error
                console.log(error);
            });
     }
@@ -55,8 +64,7 @@
         let dayOffset = new Date(year, month).getDay();
         let daysInMonth = 32 - (new Date(year, month, 32)).getDate();
         let cur = false;
-        let curDate = new Date();
-        if (curDate.getMonth() == month && curDate.getFullYear() == year) {
+        if (today[1] - 1 == month && today[0] == year) {
             cur = true;
         }
         let curRow = document.createElement("tr");
@@ -71,7 +79,7 @@
             td.textContent = i;
             td.onclick = clickDay;
             // if day is today, make it look special
-            if (cur && curDate.getDate() == i) {
+            if (cur && today[2] == i) {}
                 td.className = "today";
             }
             curRow.appendChild(td);
