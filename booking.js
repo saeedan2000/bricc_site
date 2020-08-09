@@ -48,7 +48,6 @@
            .then(function(responseText) {
                 let initInfo = JSON.parse(responseText);
                 today = initInfo.today.split("-");
-                console.log(today);
                 calendar(parseInt(today[1]) - 1, parseInt(today[0]));
            })
            .catch(function(error) {
@@ -120,7 +119,10 @@
         $("selectedDate").textContent = display;
         date = monthYear[1] + "-" + month + "-" + d;
 
-        // make the select day? button appear
+        // populate time picker with available times for this day, then make
+        // time section appear
+
+        $("timeContainer").style.display = "block";
     }
 
     function prevMonth() {
