@@ -155,9 +155,11 @@ h3, h4 {
 }
 
 .hourTile {
-    width: 50px;
-    height: 30px;
-    border: 2px solid black;
+    width: calc(100% / 5);
+    height: 50px;
+    text-align: center;
+    border: 1px solid #984B43;
+    font-size: 20px;
 }
 
 #textContainer, #resContainer {
