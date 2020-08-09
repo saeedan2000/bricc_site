@@ -180,7 +180,34 @@
             numHours = parseInt(normalHours.num_hours);
         }
         console.log ("start: " + start + " and num hours: " + numHours);
-        // load am hours
+        // start filling in hours
+        let type;
+        if (start < 11) {
+            type = "AM";
+        } else {
+            type = "PM";
+        }
+        let hour;
+        for (let i = start + 1; i <= start + numHours; i++) {
+            hour = i % 12;
+            if (hour == 0) {
+                hour = 12;
+                if (type == "AM") {
+                    type == "PM";
+                } else {
+                    type == "AM";
+                }
+            }
+            let hr = document.createElement("div");
+            hr.className = "hourTile";
+            hr.textContent = hour + " " + type;
+            if (type == "AM") {
+                amContainer.appendChild(hr);
+            } else {
+                pmContainer.appendChild(hr);
+            }
+        }
+        /*// load am hours
         let amContainer = $("amContainer");
         for (let i = start + 1; i < 12; i++) {
             console.log("should be adding am hour rn");
@@ -203,7 +230,7 @@
                 hr.textContent = i + " pm";
             }
             pmContainer.appendChild(hr);
-        }
+        } */
     }
 
     function toggleTime() {
