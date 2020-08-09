@@ -121,7 +121,7 @@
 
         // populate time picker with available times for this day, then make
         // time section appear
-
+                // gonna need func call here for first part, need to actually make time picker first
         $("timeContainer").style.display = "block";
     }
 
@@ -150,10 +150,69 @@
         }
         calendar(month, year);
     }
+
+    function loadHours(date) {
+        let start
+        let numHours;
+        let specialFlag = false;
+        let s;
+        // check if this date has special hours
+        for (s of specialHours) {
+            if (s.date == date) {
+                specialFlag = true;
+                start = s.start;
+                numHours = s.num_hours;
+            }
+        }
+        // if not use normal hours
+        if (!specialFlag) {
+            start = normalHours.start;
+            numHours = normalHours.num_hours;
+        }
+        // load am hours
+        let amContainer = $("amContainer");
+        for (let i = start + 1; i < 12; i++) {
+            let hr = document.createElement("div");
+            hr.className = "hourTile";
+            hr.id = i + " am";
+            hr.textContent = i + " am";
+            amContainer.appendChild(hr);
+        }
+        //load pm hours
+        let pmContainer = $("pmContainer");
+        for (let i = 0; i <= (numHours + start - 12); i++) {
+            let hr = document.createElement("div");
+            hr.className = "hourTile";
+            if (i == 0) {
+                hr.id = "12 pm";
+                hr.textContent = "12 pm";
+            } else {
+                hr.id = i + " pm";
+                hr.textContent = i + " pm";
+            }
+            pmContainer.appendChild(hr);
+        }
+    }
+
+    function toggleTime() {
+        let amContainer = $("amContainer");
+        let pmContainer = $("pmContainer");
+        let selectedAmpm = $("selectedAmpm");
+        if (selectedAmpm.textContent == "AM") {
+            selectedAmpm.textContent = "PM";
+        } else {
+            selectedAmpm.textContent = "AM";
+        }
+        amContainer.classList.toggle("visHours");
+        pmContainer.classList.toggle("invisHours");
+    }
    
     window.onload = function() {
         ajaxInitInfo();
         $("prevMonthButton").onclick = prevMonth;
         $("nextMonthButton").onclick = nextMonth;
+        let timeButtons = document.querySelectorAll(".timeButton");
+        timeButtons[0].onclick = toggleTime;
+        timeButtons[1].onclick = toggleTime;
     }
 })();

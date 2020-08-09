@@ -98,7 +98,7 @@ h3, h4 {
     border-collapse: collapse;
 }
 
-td {
+#calendarTable td {
     width: calc(100% / 7);
     height: 50px;
     text-align: center;
@@ -144,8 +144,20 @@ td {
     background-color: #EAc67A;
 }
 
-#timeContainer {
+#timeContainer, .invisHours {
     display: none;
+}
+
+.visHours {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.hourTile {
+    width: 50px;
+    height: 30px;
+    border: 2px solid black;
 }
 
 #textContainer, #resContainer {
