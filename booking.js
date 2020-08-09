@@ -49,7 +49,7 @@
                 let initInfo = JSON.parse(responseText);
                 today = initInfo.today.split("-");
                 console.log(today);
-                calendar(today[1], today[0]);
+                calendar(parseInt(today[1]) - 1, parseInt(today[0]));
            })
            .catch(function(error) {
                console.log(error);
