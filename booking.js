@@ -121,7 +121,7 @@
 
         // populate time picker with available times for this day, then make
         // time section appear
-                // gonna need func call here for first part, need to actually make time picker first
+        loadHours(date);
         $("timeContainer").style.display = "block";
     }
 
