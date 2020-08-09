@@ -159,11 +159,13 @@
         let specialFlag = false;
         let s;
         // check if this date has special hours
-        for (s of specialHours) {
-            if (s.date == date) {
-                specialFlag = true;
-                start = s.start;
-                numHours = s.num_hours;
+        if (specialHours != null) {
+            for (s of specialHours) {
+                if (s.date == date) {
+                    specialFlag = true;
+                    start = s.start;
+                    numHours = s.num_hours;
+                }
             }
         }
         // if not use normal hours
