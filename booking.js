@@ -152,6 +152,7 @@
     }
 
     function loadHours(date) {
+        console.log("loading hours for date: " + date);
         let start
         let numHours;
         let specialFlag = false;
@@ -169,9 +170,11 @@
             start = normalHours.start;
             numHours = normalHours.num_hours;
         }
+        console.log ("start: " + start + " and num hours: " + numHours);
         // load am hours
         let amContainer = $("amContainer");
         for (let i = start + 1; i < 12; i++) {
+            console.log("should be adding am hour rn");
             let hr = document.createElement("div");
             hr.className = "hourTile";
             hr.id = i + " am";
@@ -204,7 +207,9 @@
             selectedAmpm.textContent = "AM";
         }
         amContainer.classList.toggle("visHours");
+        amContainer.classList.toggle("invisHours");
         pmContainer.classList.toggle("invisHours");
+        pmContainer.classList.toggle("visHours");
     }
    
     window.onload = function() {
