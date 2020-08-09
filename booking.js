@@ -153,7 +153,7 @@
 
     function loadHours(date) {
         console.log("loading hours for date: " + date);
-        console.log(specialHours);
+        console.log(specialHours == null);
         let start
         let numHours;
         let specialFlag = false;
