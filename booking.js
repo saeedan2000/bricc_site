@@ -123,6 +123,9 @@
 
         // populate time picker with available times for this day, then make
         // time section appear
+        // first clear old hours
+        $("amContainer").textContent = "";
+        $("pmContainer").textContent = "";
         loadHours(date);
         $("timeContainer").style.display = "block";
     }
