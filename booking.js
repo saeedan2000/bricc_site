@@ -22,7 +22,6 @@
         return input;
     }
 
-    /* OLD STUFF, COULD BE USEFUL LATER
     // check for server response.
     function checkStatus(response) {
         if (response.status >= 200 && response.status < 300) {
@@ -33,18 +32,19 @@
         }
     }
     
-    // This function uses an AJAX fetch to get information about the BRICC
-    // calendar from the web server.
-    function ajaxCalendar() {
-        let url = "http://bricc.us-east-2.elasticbeanstalk.com/calendar.php"; 
+    // This function makes an AJAX request to pickerInfo.php when the page is first loaded
+    function ajaxInitInfo() {
+        let url = "http://briccwebapp-env.eba-ekqffpav.us-east-1.elasticbeanstalk.com/pickerInfo.php"; 
         fetch(url)
            .then(checkStatus)
-           .then(loadCalendar)
+           .then(function(response) {
+               console.log(response);
+           })
            .catch(function(error) {
                //error: do something with error
                console.log(error);
            });
-    } */
+    }
 
     // takes a month (0-11) and a year and reloads the calendar for that month
     function calendar(month, year) {
@@ -157,6 +157,7 @@
     }
    
     window.onload = function() {
+        ajaxInitInfo();
         // load the calendar
         let d = new Date();
         calendar(d.getMonth(), d.getFullYear());

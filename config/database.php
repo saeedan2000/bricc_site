@@ -25,9 +25,9 @@ function connectToDB() {
 
     catch(Exception $e)
     {
+        header("HTTP/1.1 500 Internal Server Error");
         header("Content-Type: text/plain");
-        print ("Can not connect to the database. Please try again later.\n");
-        print ("Error details: $e \n");
+        print ("Can not connect to the database. Error details: $e \n");
         die();
     }
     return $db;
