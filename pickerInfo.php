@@ -7,7 +7,7 @@ $today = date("Y-m-d");
 # get info from db
 $ret = array();
 $pdoSt = $db->query("SELECT h.start, h.num_hours FROM Hours AS h WHERE h.date = '1000-01-01';");
-$ret["default"] = $pdoSt->fetchAll();
+$ret["default"] = $pdoSt->fetchAll()[0];
 $pdoSt = $db->query("SELECT * FROM Hours AS h WHERE h.date >= '{$today}';");
 $ret["specialHours"] = $pdoSt->fetchAll();
 $ret["today"] = $today;
