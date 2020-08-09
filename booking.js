@@ -172,6 +172,7 @@
         }
         // if not use normal hours
         if (!specialFlag) {
+            console.log(normalHours);
             start = normalHours.start;
             numHours = normalHours.num_hours;
         }
