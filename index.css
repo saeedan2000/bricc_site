@@ -117,10 +117,6 @@ td {
 
 }
 
-#calContainer {
-    display: none;
-}
-
 .monthButton, .timeButton{
     background-color: #984B43;
     border: 0px;
