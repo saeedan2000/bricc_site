@@ -79,7 +79,7 @@
             td.textContent = i;
             td.onclick = clickDay;
             // if day is today, make it look special
-            if (cur && today[2] == i) {}
+            if (cur && today[2] == i) {
                 td.className = "today";
             }
             curRow.appendChild(td);
