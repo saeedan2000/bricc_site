@@ -166,9 +166,6 @@
    
     window.onload = function() {
         ajaxInitInfo();
-        // load the calendar
-        let d = new Date();
-        calendar(d.getMonth(), d.getFullYear());
         $("selectedDate").onclick = toggleCalendar;
         $("prevMonthButton").onclick = prevMonth;
         $("nextMonthButton").onclick = nextMonth;
