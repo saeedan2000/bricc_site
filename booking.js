@@ -232,7 +232,7 @@
         if (amIndex > 0) {
             for (let i = amIndex + 1; i <= numHoursPerRow; i++) {
                 let filler = document.createElement("td");
-                td.classList.add("fillerCell");
+                filler.classList.add("fillerCell");
                 amRow.appendChild(filler);
             }
             $("amTable").appendChild(amRow);
@@ -240,7 +240,7 @@
         if (pmIndex > 0) {
             for (let i = pmIndex + 1; i <= numHoursPerRow; i++) {
                 let filler = document.createElement("td");
-                td.classList.add("fillerCell");
+                filler.classList.add("fillerCell");
                 pmRow.appendChild(filler);
             }
             $("pmTable").appendChild(pmRow);
