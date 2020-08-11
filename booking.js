@@ -109,11 +109,11 @@
 
     // onclick handler for a day tile
     function clickDay() {
-        let oldSelected = document.querySelector(".selectedDay");
+        let oldSelected = document.querySelector(".selectedDayTile");
         if (oldSelected != null) {
-            oldSelected.classList.remove("selectedDay");
+            oldSelected.classList.remove("selectedDayTile");
         }
-        this.classList.add("selectedDay");
+        this.classList.add("selectedDayTile");
         let d = f(this.textContent);
         let monthYear = $("selectedMonth").textContent.split(" ");
         let month = f(String(monthNames.indexOf(monthYear[0]) + 1));
@@ -217,9 +217,7 @@
             // make table cell and add it to correct row
             let hr = document.createElement("td");
             hr.textContent = hour + ":00";
-            hr.onclick = function() {
-                this.classList.add("selectedDay");  //mildly broken
-            }
+            hr.onclick = clickHour;
             if (type == "AM") {
                 amRow.appendChild(hr);
                 amIndex++;
@@ -282,6 +280,15 @@
             amTable.style.display = "table";
             pmTable.style.display = "none";
         }
+    }
+
+    function clickHour() {
+        let oldSelected = document.querySelector(".selectedHourTile");
+        if (oldSelected != null) {
+            oldSelected.classList.remove("selectedHourTile");
+        }
+        this.classList.add("selectedHourTile");
+        $("selectedHour").textContent = this.textContent + " " + $("selectedAmPm").textContent;
     }
    
     window.onload = function() {
