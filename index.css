@@ -55,6 +55,7 @@ h3, h4 {
     background-color: #EAc67A;
     color: #233237;
     border: 3px solid #984B43;
+    margin-bottom: 10px;
 }
 
 #selectedDate, #selectedHour {
