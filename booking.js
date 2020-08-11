@@ -288,7 +288,7 @@
             oldSelected.classList.remove("selectedHourTile");
         }
         this.classList.add("selectedHourTile");
-        $("selectedHour").textContent = this.textContent + " " + $("selectedAmPm").textContent;
+        $("selectedHour").textContent = this.textContent + " " + $("selectedAmpm").textContent;
     }
    
     window.onload = function() {
