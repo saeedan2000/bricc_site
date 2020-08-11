@@ -213,6 +213,9 @@
             // make table cell and add it to correct row
             let hr = document.createElement("td");
             hr.textContent = hour + ":00";
+            hr.onclick = function() {
+                this.classList.add("selectedDay");  //mildly broken
+            }
             if (type == "AM") {
                 amRow.appendChild(hr);
                 amIndex++;
