@@ -249,7 +249,7 @@
         let numAmRows = $("amTable").querySelectorAll("tr").length;
         if (numAmRows < minRowsPerTable) {
             for (let i = numAmRows; i < minRowsPerTable; i++) {
-                let row = document.createElement(tr);
+                let row = document.createElement("tr");
                 let filler = document.createElement("td");
                 filler.classList.add("fillerCell");
                 row.appendChild(filler);
@@ -259,7 +259,7 @@
         let numPmRows = $("pmTable").querySelectorAll("tr").length;
         if (numPmRows < minRowsPerTable) {
             for (let i = numPmRows; i < minRowsPerTable; i++) {
-                let row = document.createElement(tr);
+                let row = document.createElement("tr");
                 let filler = document.createElement("td");
                 filler.classList.add("fillerCell");
                 row.appendChild(filler);
