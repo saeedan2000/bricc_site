@@ -238,10 +238,10 @@
         if (selectedAmpm.textContent == "AM") {
             selectedAmpm.textContent = "PM";
             amTable.style.display = "none";
-            pmTable.style.display = "flex";
+            pmTable.style.display = "table";
         } else {
             selectedAmpm.textContent = "AM";
-            amTable.style.display = "flex";
+            amTable.style.display = "table";
             pmTable.style.display = "none";
         }
     }

@@ -112,9 +112,6 @@ td {
     width: calc(100% / 5);
 }
 
-tr {
-    width: 100%;
-}
 
 .today {
     border-width: 3px;
@@ -156,15 +153,6 @@ tr {
 
 #timeContainer, #pmTable {
     display: none;
-}
-
-#amTable, #pmTable {
-    flex-wrap: wrap;
-    align-items: flex-start;
-}
-
-#amTable {
-    display: flex;
 }
 
 .hourTile {
