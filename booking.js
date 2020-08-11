@@ -251,7 +251,7 @@
             for (let i = numAmRows; i < minRowsPerTable; i++) {
                 let row = document.createElement(tr);
                 let filler = document.createElement("td");
-                td.classList.add("fillerCell");
+                filler.classList.add("fillerCell");
                 row.appendChild(filler);
                 $("amTable").appendChild(row);
             }
@@ -261,7 +261,7 @@
             for (let i = numPmRows; i < minRowsPerTable; i++) {
                 let row = document.createElement(tr);
                 let filler = document.createElement("td");
-                td.classList.add("fillerCell");
+                filler.classList.add("fillerCell");
                 row.appendChild(filler);
                 $("pmTable").appendChild(row);
             }
