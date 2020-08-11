@@ -156,6 +156,8 @@
         calendar(month, year);
     }
 
+    // reloads a new time picker with available times for a given day
+    // clears out old hours, then adds new
     function loadHours(date) {
         let start
         let numHours;
@@ -189,6 +191,7 @@
         let amIndex = 0;
         let pmIndex = 0;
         let numHoursPerRow = 5; // THIS IS MODIFIABLE TO CHANGE APPEARANCE
+        let minRowsPerTable = 3; // ALSO MODDABLE
         for (let i = start + 1; i <= start + numHours; i++) {
             // if we have filled a row, put it in table and create new row 
             if (amIndex == numHoursPerRow) {
@@ -227,10 +230,41 @@
         }
         // add any partially finished rows to table
         if (amIndex > 0) {
+            for (let i = amIndex + 1; i <= numHoursPerRow; i++) {
+                let filler = document.createElement("td");
+                td.classList.add("fillerCell");
+                amRow.appendChild(filler);
+            }
             $("amTable").appendChild(amRow);
         }
         if (pmIndex > 0) {
+            for (let i = pmIndex + 1; i <= numHoursPerRow; i++) {
+                let filler = document.createElement("td");
+                td.classList.add("fillerCell");
+                pmRow.appendChild(filler);
+            }
             $("pmTable").appendChild(pmRow);
+        }
+        // if necessary, add more rows to the am table to fill space
+        let numAmRows = $("amTable").querySelectorAll("tr").length;
+        if (numAmRows < minRowsPerTable) {
+            for (let i = numAmRows; i < minRowsPerTable; i++) {
+                let row = document.createElement(tr);
+                let filler = document.createElement("td");
+                td.classList.add("fillerCell");
+                row.appendChild(filler);
+                $("amTable").appendChild(row);
+            }
+        } // now same for pm table
+        let numPmRows = $("pmTable").querySelectorAll("tr").length;
+        if (numPmRows < minRowsPerTable) {
+            for (let i = numPmRows; i < minRowsPerTable; i++) {
+                let row = document.createElement(tr);
+                let filler = document.createElement("td");
+                td.classList.add("fillerCell");
+                row.appendChild(filler);
+                $("pmTable").appendChild(row);
+            }
         }
     }
 

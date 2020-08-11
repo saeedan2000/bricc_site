@@ -112,6 +112,10 @@ td {
     width: calc(100% / 5);
 }
 
+.fillerCell {
+    border: 0px;
+}
+
 #amTable, #pmTable {
     min-height: 200px;
 }
