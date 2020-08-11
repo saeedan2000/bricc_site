@@ -92,13 +92,13 @@ h3, h4 {
     margin: 0px;
 }
 
-#calendarTable, #hourTable {
+#calendarTable, #amTable, #pmTable {
     width: 100%;
     border: 1px solid #984B43;
     border-collapse: collapse;
 }
 
-#calendarTable td {
+td {
     width: calc(100% / 7);
     height: 50px;
     text-align: center;
@@ -144,14 +144,17 @@ h3, h4 {
     background-color: #EAc67A;
 }
 
-#timeContainer, .invisHours {
+#timeContainer, #pmTable {
     display: none;
 }
 
-.visHours {
-    display: flex;
+#amTable, #pmTable {
     flex-wrap: wrap;
     align-items: flex-start;
+}
+
+#amTable {
+    display: flex;
 }
 
 .hourTile {

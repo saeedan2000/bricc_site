@@ -124,8 +124,8 @@
         // populate time picker with available times for this day, then make
         // time section appear
         // first clear old hours
-        $("amContainer").textContent = "";
-        $("pmContainer").textContent = "";
+        $("amTable").textContent = "";
+        $("pmTable").textContent = "";
         loadHours(date);
         $("timeContainer").style.display = "block";
     }
@@ -157,8 +157,6 @@
     }
 
     function loadHours(date) {
-        console.log("loading hours for date: " + date);
-        console.log(specialHours == null);
         let start
         let numHours;
         let specialFlag = false;
@@ -168,18 +166,16 @@
             for (s of specialHours) {
                 if (s.date == date) {
                     specialFlag = true;
-                    start = s.start;
-                    numHours = s.num_hours;
+                    start = parseInt(s.start);
+                    numHours = parseInt(s.num_hours);
                 }
             }
         }
         // if not use normal hours
         if (!specialFlag) {
-            console.log(normalHours);
             start = parseInt(normalHours.start);
             numHours = parseInt(normalHours.num_hours);
         }
-        console.log ("start: " + start + " and num hours: " + numHours);
         // start filling in hours
         let type;
         if (start < 11) {
@@ -188,7 +184,23 @@
             type = "PM";
         }
         let hour;
+        let amRow = document.createElement("tr");
+        let pmRow = document.createElement("tr");
+        let amIndex = 0;
+        let pmIndex = 0;
         for (let i = start + 1; i <= start + numHours; i++) {
+            // if we have filled a row, put it in table and create new row (THIS IS WHERE WIDTH OF ROW IS DEFINED)
+            if (amIndex == 4) {
+                amIndex = 0;
+                $("amTable").appendChild(amRow);
+                amRow = document.createElement("tr");
+            }
+            if (pmIndex == 4) {
+                pmIndex = 0;
+                $("pmTable").appendChild(pmRow);
+                pmRow = document.createElement("tr");
+            }
+            // just figures out what hour we are currently on
             hour = i % 12;
             if (hour == 0) {
                 hour = 12;
@@ -198,30 +210,40 @@
                     type = "AM";
                 }
             }
-            let hr = document.createElement("div");
-            hr.className = "hourTile";
-            hr.textContent = hour + " " + type;
+            // make table cell and add it to correct row
+            let hr = document.createElement("td");
+            hr.textContent = hour + ":00";
             if (type == "AM") {
-                amContainer.appendChild(hr);
+                amRow.appendChild(hr);
+                amIndex++;
             } else {
-                pmContainer.appendChild(hr);
+                pmRow.appendChild(hr);
+                pmIndex++;
             }
+        }
+        // add any partially finished rows to table
+        if (amIndex > 0) {
+            $("amTable").appendChild(amRow);
+        }
+        if (pmIndex > 0) {
+            $("pmTable").appendChild(pmRow);
         }
     }
 
+    // This function swaps the displayed hours between AM and PM
     function toggleTime() {
-        let amContainer = $("amContainer");
-        let pmContainer = $("pmContainer");
+        let amTable = $("amTable");
+        let pmTable = $("pmTable");
         let selectedAmpm = $("selectedAmpm");
         if (selectedAmpm.textContent == "AM") {
             selectedAmpm.textContent = "PM";
+            amTable.style.display = "none";
+            pmTable.style.display = "flex";
         } else {
             selectedAmpm.textContent = "AM";
+            amTable.style.display = "flex";
+            pmTable.style.display = "none";
         }
-        amContainer.classList.toggle("visHours");
-        amContainer.classList.toggle("invisHours");
-        pmContainer.classList.toggle("invisHours");
-        pmContainer.classList.toggle("visHours");
     }
    
     window.onload = function() {
