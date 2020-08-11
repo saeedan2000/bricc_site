@@ -188,14 +188,15 @@
         let pmRow = document.createElement("tr");
         let amIndex = 0;
         let pmIndex = 0;
+        let numHoursPerRow = 5; // THIS IS MODIFIABLE TO CHANGE APPEARANCE
         for (let i = start + 1; i <= start + numHours; i++) {
-            // if we have filled a row, put it in table and create new row (THIS IS WHERE WIDTH OF ROW IS DEFINED)
-            if (amIndex == 5) {
+            // if we have filled a row, put it in table and create new row 
+            if (amIndex == numHoursPerRow) {
                 amIndex = 0;
                 $("amTable").appendChild(amRow);
                 amRow = document.createElement("tr");
             }
-            if (pmIndex == 4) {
+            if (pmIndex == numHoursPerRow) {
                 pmIndex = 0;
                 $("pmTable").appendChild(pmRow);
                 pmRow = document.createElement("tr");
