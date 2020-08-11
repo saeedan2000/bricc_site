@@ -112,6 +112,10 @@ td {
     width: calc(100% / 5);
 }
 
+tr {
+    width: 100%;
+}
+
 .today {
     border-width: 3px;
 }
