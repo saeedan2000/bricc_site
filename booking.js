@@ -190,7 +190,7 @@
         let pmIndex = 0;
         for (let i = start + 1; i <= start + numHours; i++) {
             // if we have filled a row, put it in table and create new row (THIS IS WHERE WIDTH OF ROW IS DEFINED)
-            if (amIndex == 4) {
+            if (amIndex == 5) {
                 amIndex = 0;
                 $("amTable").appendChild(amRow);
                 amRow = document.createElement("tr");
