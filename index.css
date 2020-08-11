@@ -108,10 +108,13 @@ td {
     width: calc(100% / 7);
 }
 
-#amTable td, #pmTable td {
+#amTable td, #pmTable td {           /* TENTATIVE */
     width: calc(100% / 5);
 }
 
+#amTable, #pmTable {
+    min-height: 200px;
+}
 
 .today {
     border-width: 3px;
