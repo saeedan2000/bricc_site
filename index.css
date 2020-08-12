@@ -74,7 +74,7 @@ h3, h4 {
 #durationPrompt {
     border-left: 0px;
     border-right: 0px;
-    border-top: 1px solid #984B43;
+    border-top: 4px solid #984B43;
 }
 
 #monthPicker, #ampmPicker, #durationPicker {

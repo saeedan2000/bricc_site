@@ -248,9 +248,11 @@
         if (numAmRows < minRowsPerTable) {
             for (let i = numAmRows; i < minRowsPerTable; i++) {
                 let row = document.createElement("tr");
-                let filler = document.createElement("td");
-                filler.classList.add("fillerCell");
-                row.appendChild(filler);
+                for (let x = 0; x < numHoursPerRow; x++) {
+                    let filler = document.createElement("td");
+                    filler.classList.add("fillerCell");
+                    row.appendChild(filler);
+                }
                 $("amTable").appendChild(row);
             }
         } // now same for pm table
@@ -258,9 +260,11 @@
         if (numPmRows < minRowsPerTable) {
             for (let i = numPmRows; i < minRowsPerTable; i++) {
                 let row = document.createElement("tr");
-                let filler = document.createElement("td");
-                filler.classList.add("fillerCell");
-                row.appendChild(filler);
+                for (let x = 0; x < numHoursPerRow; x++) {
+                    let filler = document.createElement("td");
+                    filler.classList.add("fillerCell");
+                    row.appendChild(filler);
+                }
                 $("pmTable").appendChild(row);
             }
         }
