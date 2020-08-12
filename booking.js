@@ -353,6 +353,7 @@
 
     // IDEA: limit user from scrolling calendar into past by checking if today is on the current cal
     // if so dont go back
+    // IDEA: FIX THE UGLY BUTTONS for prev/next
 
     window.onload = function() {
         ajaxInitInfo();
