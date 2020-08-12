@@ -314,7 +314,7 @@
             let hr = parseInt($("selectedHour").textContent);
             // if no hour is selected then there is no problem updating duration
             if (isNaN(hr)) {
-                durationDisplay.textContent = duration + 1;
+                durationDisplay.textContent = duration + 1 + " hour(s) long";
             } else { // hour is selected, make sure it works with the duration
                 // convert hr to 0-23
                 if ($("selectedHour").textContent.split(" ")[1] == "PM") {
