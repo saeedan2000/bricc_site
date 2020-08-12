@@ -306,7 +306,7 @@
         let log = new Object();
         let date = $("selectedDate").textContent.split(" / ");
         log.date = date[2] + "-" + date[0] + "-" + date[1];
-        time = $("selectedHour").textContent.split(" ");
+        let time = $("selectedHour").textContent.split(" ");
         hr = parseInt(time[0]);
         if (hr == 12) {
             hr = 0;
