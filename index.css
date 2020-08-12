@@ -137,7 +137,7 @@ td {
 .monthButton, .timeButton, .durationButton {
     display: block;
     font-size: 30px;
-    padding: 8px 0px 8px 0px;
+    /*padding: 8px 0px 8px 0px; */
     width: calc(100% / 7);
     color: #233237;
     background-color: #984B43;
