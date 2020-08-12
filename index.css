@@ -60,7 +60,7 @@ h3, h4 {
     border: 3px solid #984B43;
 }
 
-#selectedDate, #selectedHour {
+#selectedDate, #timePicker p {
     height: 45px;
     font-size: 30px;
     display: flex;
@@ -69,6 +69,12 @@ h3, h4 {
     border-left: 1px solid #984B43;
     border-right: 1px solid #984B43;
     margin: 0px;
+}
+
+#durationPrompt {
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 1px solid #984B43;
 }
 
 #monthPicker, #ampmPicker, #durationPicker {
