@@ -301,6 +301,23 @@
         // for now im too lazy to write a check, just going to reset to 1 every time
         // might be slightly annoying for user
         $("selectedDuration").textContent = "1 hour(s) long";
+
+        // TEMP COOOOOOOOOOOOOOOOOOOODE, simply logs all the choices made so far
+        let log = new Object();
+        let date = $("selectedDate").textContent.split(" / ");
+        log.date = date[2] + "-" + date[0] + "-" + date[1];
+        time = $("selectedHour").textContent.split(" ");
+        hr = parseInt(time[0]);
+        if (hr == 12) {
+            hr = 0;
+        }
+        if (time[1] == "PM") {
+            hr += 12;
+        }
+        log.time = hr;
+        log.duration = parseInt($("selectedDuration").textContent);
+        log.laneType = document.querySelector(".selectedLaneTypeTile").textContent;
+        console.log(log);
     }
 
     // this function is an event handler for the increase duration button
