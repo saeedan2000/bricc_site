@@ -50,8 +50,8 @@ h3, h4 {
 
 #datePicker, #timePicker {
     margin: auto;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    margin-bottom: 15px;
+    margin-top: 15px;
     width: 100%;
     max-width: 500px;
     box-shadow: 4px 4px 3px 2px rgba(0, 0, 0, 0.5);
@@ -69,12 +69,6 @@ h3, h4 {
     border-left: 1px solid #984B43;
     border-right: 1px solid #984B43;
     margin: 0px;
-}
-
-#durationPrompt {
-    border-left: 0px;
-    border-right: 0px;
-    border-top: 4px solid #984B43;
 }
 
 #monthPicker, #ampmPicker, #durationPicker {
@@ -100,7 +94,7 @@ h3, h4 {
     margin: 0px;
 }
 
-#calendarTable, #amTable, #pmTable {
+#calendarTable, #amTable, #pmTable, #laneTypeTable {
     width: 100%;
     border: 1px solid #984B43;
     border-collapse: collapse;
@@ -121,6 +115,10 @@ td {
     width: calc(100% / 5);
 }
 
+#laneTypeTable td {
+    width: calc(100% / 3);
+}
+
 .fillerCell {
     border: 0px;
 }
@@ -129,7 +127,7 @@ td {
     border-width: 3px;
 }
 
-.selectedDayTile, .selectedHourTile {
+.selectedDayTile, .selectedHourTile, .selectedLaneTypeTile {
     background-color: #984B43;
     color: white;
     box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.5);
@@ -152,6 +150,7 @@ td {
     display: none;
 }
 
+/*
 .hourTile {
     display: flex;
     justify-content: center;
@@ -161,7 +160,7 @@ td {
     text-align: center;
     border: 1px solid #984B43;
     font-size: 24px;
-}
+} THINK THIS IS NO LONGER USEFUL BUT CONFUSED*/
 
 #textContainer, #resContainer {
     text-align: center;
