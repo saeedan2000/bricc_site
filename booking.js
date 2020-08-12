@@ -297,7 +297,10 @@
         this.classList.add("selectedHourTile");
         $("selectedHour").textContent = this.textContent + " " + $("selectedAmpm").textContent;
 
-        // duration check
+        // duration check 
+        // for now im too lazy to write a check, just going to reset to 1 every time
+        // might be slightly annoying for user
+        $("selectedDuration").textContent = 1;
     }
 
     // this function is an event handler for the increase duration button
@@ -306,9 +309,9 @@
     function increaseDuration() {
         let maxDuration = 4; // MODDABLE
         let durationDisplay = $("selectedDuration");
-        if (parseInt(durationDisplay.textContent) < maxDuration) {
+        let duration = parseInt(durationDisplay.textContent);
+        if (duration < maxDuration) {
             let hr = parseInt($("selectedHour").textContent);
-            let duration = parseInt(durationDisplay.textContent);
             // if no hour is selected then there is no problem updating duration
             if (isNaN(hr)) {
                 durationDisplay.textContent = duration + 1;
@@ -331,6 +334,15 @@
         }
     }
 
+    // onclick for decrease duration button, simply decrease if > 1
+    function decreaseDuration() {
+        let durationDisplay = $("selectedDuration");
+        let duration = parseInt(durationDisplay.textContent);
+        if (duration > 1) {
+            durationDisplay.textContent = duration - 1;
+        }
+    }
+
     // IDEA: limit user from scrolling calendar into past by checking if today is on the current cal
     // if so dont go back
 
@@ -342,5 +354,6 @@
         timeButtons[0].onclick = toggleTime;
         timeButtons[1].onclick = toggleTime;
         $("durationIncreaseButton").onclick = increaseDuration;
+        $("durationDecreaseButton").onclick = decreaseDuration;
     }
 })();
