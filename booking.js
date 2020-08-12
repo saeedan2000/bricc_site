@@ -343,6 +343,14 @@
         }
     }
 
+    // onclick handler for lane type buttons, if one is clicked, unselect the old 
+    // selected lane type and make this one selected.
+    function clickLaneType() {
+        let oldSelected = document.querySelector(".selectedLaneTypeTile");
+        oldSelected.classList.remove("selectedLaneTypeTile");
+        this.classList.add("selectedLaneTypeTile");
+    }
+
     // IDEA: limit user from scrolling calendar into past by checking if today is on the current cal
     // if so dont go back
 
@@ -355,5 +363,9 @@
         timeButtons[1].onclick = toggleTime;
         $("durationIncreaseButton").onclick = increaseDuration;
         $("durationDecreaseButton").onclick = decreaseDuration;
+        let laneTypes = $("laneTypeTable").querySelectorAll("td");
+        for (let x of laneTypes) {
+            x.onclick = clickLaneType;
+        }
     }
 })();
