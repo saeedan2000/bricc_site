@@ -300,7 +300,7 @@
         // duration check 
         // for now im too lazy to write a check, just going to reset to 1 every time
         // might be slightly annoying for user
-        $("selectedDuration").textContent = "Duration: 1 hour";
+        $("selectedDuration").textContent = "1 hour(s) long";
     }
 
     // this function is an event handler for the increase duration button
@@ -328,7 +328,7 @@
                     }
                 }
                 if (hr + duration + 1 <= parseInt(normalHours.start) + parseInt(normalHours.num_hours)) {
-                    durationDisplay.textContent = "Duration: " + (duration + 1) + " hour";
+                    durationDisplay.textContent = (duration + 1) + " hour(s) long";
                 }
             }
         }
@@ -339,7 +339,7 @@
         let durationDisplay = $("selectedDuration");
         let duration = parseInt(durationDisplay.textContent);
         if (duration > 1) {
-            durationDisplay.textContent = "Duration: " + (duration - 1) + " hour";;
+            durationDisplay.textContent = (duration - 1) + " hour(s) long";
         }
     }
 
