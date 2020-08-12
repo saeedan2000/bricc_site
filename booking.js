@@ -282,6 +282,9 @@
         }
     }
 
+    // this function is an event handler for the hour tiles. It makes the tile
+    // look selected while unselecting any older selections, then populates the display
+    // also, it makes sure this hour + the duration currently chosen is not out of bounds
     function clickHour() {
         let oldSelected = document.querySelector(".selectedHourTile");
         if (oldSelected != null) {
@@ -289,8 +292,44 @@
         }
         this.classList.add("selectedHourTile");
         $("selectedHour").textContent = this.textContent + " " + $("selectedAmpm").textContent;
+
+        // duration check
     }
-   
+
+    // this function is an event handler for the increase duration button
+    // it checks the current hour and if it is set, makes sure it + duration
+    // is not out of bounds, then updates the duration display.
+    function increaseDuration() {
+        let maxDuration = 4; // MODDABLE
+        let durationDisplay = $("selectedDuration");
+        if (parseInt(durationDisplay.textContent) < maxDuration) {
+            let hr = parseInt($("selectedHour").textContent);
+            let duration = parseInt(durationDisplay.textContent);
+            // if no hour is selected then there is no problem updating duration
+            if (isNaN(hr)) {
+                durationDisplay.textContent = duration + 1;
+            } else { // hour is selected, make sure it works with the duration
+                // convert hr to 0-23
+                if ($("selectedHour").textContent.split(" ")[1] == "PM") {
+                    if (hr == 12) {
+                        hr = 0;
+                    }
+                    hr += 12;
+                } else {
+                    if (hr == "12") {
+                        hr = 0;
+                    }
+                }
+                if (hr + duration + 1 <= parseInt(normalHours.start) + parseInt(normalHours.num_hours)) {
+                    durationDisplay.textContent = duration + 1;
+                }
+            }
+        }
+    }
+
+    // IDEA: limit user from scrolling calendar into past by checking if today is on the current cal
+    // if so dont go back
+
     window.onload = function() {
         ajaxInitInfo();
         $("prevMonthButton").onclick = prevMonth;
@@ -298,5 +337,6 @@
         let timeButtons = document.querySelectorAll(".timeButton");
         timeButtons[0].onclick = toggleTime;
         timeButtons[1].onclick = toggleTime;
+        $("durationIncreaseButton").onclick = increaseDuration;
     }
 })();
