@@ -1,3 +1,3 @@
 <?php
-    print($_POST);
+    print(json_encode($_POST));
 ?>

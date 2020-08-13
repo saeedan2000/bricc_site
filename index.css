@@ -130,7 +130,7 @@ td {
 }
 
 .selectedDayTile, .selectedHourTile, .selectedLaneTypeTile {
-    background-color: #984B43;
+    background-color: #233237;
     color: white;
     box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.5);
 
