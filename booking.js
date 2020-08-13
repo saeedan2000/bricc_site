@@ -375,7 +375,7 @@
         }
         data.append("time", hr);
         data.append("duration", parseInt($("selectedDuration").textContent));
-        data.append("laneType", documen.querySelector(".selectedLaneTypeTile").textContent);
+        data.append("laneType", document.querySelector(".selectedLaneTypeTile").textContent);
         console.log("sending the following to server: " + data);
         ajaxPostChoices(data);
     }
