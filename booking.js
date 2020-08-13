@@ -296,6 +296,9 @@
         }
         this.classList.add("selectedHourTile");
         $("selectedHour").textContent = this.textContent + " " + $("selectedAmpm").textContent;
+        
+        // make load button visible
+        $("loadContainer").style.display = "block";
 
         // duration check 
         // for now im too lazy to write a check, just going to reset to 1 every time
