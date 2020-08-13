@@ -42,7 +42,7 @@
     
     // This function makes an AJAX get request to pickerInfo.php when the page is first loaded
     function ajaxInitInfo() {
-        let url = "BROKEhttp://briccwebapp-env.eba-ekqffpav.us-east-1.elasticbeanstalk.com/pickerInfo.php"; 
+        let url = "http://briccwebapp-env.eba-ekqffpav.us-east-1.elasticbeanstalk.com/pickerInfo.php"; 
         fetch(url)
            .then(checkStatus)
            .then(function(responseText) {
