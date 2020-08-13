@@ -8,7 +8,7 @@
     // stores the date chosen by the user, format yyyy-mm-dd
     let date;
 
-    // store todays date as an array of year, month, day
+    // store todays date as an array of year, month, day (NOT ASSOC)
     let today;
     // store normal hours (start and num hours)
     let normalHours;
@@ -134,13 +134,16 @@
         let monthYear = $("selectedMonth").textContent.split(" ");
         let month = monthNames.indexOf(monthYear[0]);
         let year = parseInt(monthYear[1]);
-        if (month == 0) {
-            year--;
-            month = 11;
-        } else {
-            month--;
-        }
-        calendar(month, year);
+        // dont do anything if trying to go into the past
+        if (parseInt(today[0]) < year || parseInt(today[1]) < month + 1) {
+            if (month == 0) {
+                year--;
+                month = 11;
+            } else {
+                month--;
+            }
+            calendar(month, year);
+        }    
     }
 
     function nextMonth() {
@@ -304,23 +307,6 @@
         // for now im too lazy to write a check, just going to reset to 1 every time
         // might be slightly annoying for user
         $("selectedDuration").textContent = "1 hour(s) long";
-
-        // TEMP COOOOOOOOOOOOOOOOOOOODE, simply logs all the choices made so far
-        let log = new Object();
-        let date = $("selectedDate").textContent.split(" / ");
-        log.date = date[2] + "-" + date[0] + "-" + date[1];
-        let time = $("selectedHour").textContent.split(" ");
-        let hr = parseInt(time[0]);
-        if (hr == 12) {
-            hr = 0;
-        }
-        if (time[1] == "PM") {
-            hr += 12;
-        }
-        log.time = hr;
-        log.duration = parseInt($("selectedDuration").textContent);
-        log.laneType = document.querySelector(".selectedLaneTypeTile").textContent;
-        console.log(log);
     }
 
     // this function is an event handler for the increase duration button
@@ -371,6 +357,26 @@
         this.classList.add("selectedLaneTypeTile");
     }
 
+    // this function is the onclick handler for the load button. It compiles all the user's choices
+    // into an object, then sends that info to the server using an ajax call
+    function clickLoad() {
+        let log = new Object();
+        let date = $("selectedDate").textContent.split(" / ");
+        log.date = date[2] + "-" + date[0] + "-" + date[1];
+        let time = $("selectedHour").textContent.split(" ");
+        let hr = parseInt(time[0]);
+        if (hr == 12) {
+            hr = 0;
+        }
+        if (time[1] == "PM") {
+            hr += 12;
+        }
+        log.time = hr;
+        log.duration = parseInt($("selectedDuration").textContent);
+        log.laneType = document.querySelector(".selectedLaneTypeTile").textContent;
+        console.log(log);
+    }
+
     // IDEA: limit user from scrolling calendar into past by checking if today is on the current cal
     // if so dont go back
     // IDEA: FIX THE UGLY BUTTONS for prev/next
@@ -388,5 +394,6 @@
         for (let x of laneTypes) {
             x.onclick = clickLaneType;
         }
+        $("loadButton").onclick = clickLoad;
     }
 })();
