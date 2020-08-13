@@ -40,9 +40,9 @@
         }
     }
     
-    // This function makes an AJAX request to pickerInfo.php when the page is first loaded
+    // This function makes an AJAX get request to pickerInfo.php when the page is first loaded
     function ajaxInitInfo() {
-        let url = "http://briccwebapp-env.eba-ekqffpav.us-east-1.elasticbeanstalk.com/pickerInfo.php"; 
+        let url = "BROKEhttp://briccwebapp-env.eba-ekqffpav.us-east-1.elasticbeanstalk.com/pickerInfo.php"; 
         fetch(url)
            .then(checkStatus)
            .then(function(responseText) {
@@ -130,6 +130,8 @@
         $("timeContainer").style.display = "block";
     }
 
+    // this function is onclick for prev month arrow in calendar. It will reload the calendar
+    // for the previous month, provided we are not on the current month.
     function prevMonth() {
         let monthYear = $("selectedMonth").textContent.split(" ");
         let month = monthNames.indexOf(monthYear[0]);
@@ -377,8 +379,6 @@
         console.log(log);
     }
 
-    // IDEA: limit user from scrolling calendar into past by checking if today is on the current cal
-    // if so dont go back
     // IDEA: FIX THE UGLY BUTTONS for prev/next
 
     window.onload = function() {

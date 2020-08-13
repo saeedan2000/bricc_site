@@ -136,16 +136,23 @@ td {
 
 }
 
-.monthButton, .timeButton, .durationButton {
+/*.monthButton, .timeButton, .durationButton {
     display: block;
     font-size: 30px;
-    /*padding: 8px 0px 8px 0px; */
     width: calc(100% / 7);
     color: #233237;
     background-color: #984B43;
     text-align: center;
     margin: 0px;
     border: 0px;
+}  GOING TO REWRITE FOR BUTTON INSTEAD OF A */
+
+.monthButton, .timeButton, .durationButton {
+    background-color: #233237;
+    color: #984B43;
+    width: calc(100% / 7);
+    font-size: 30px;
+    border: 3px solid #EAc67A;
 }
 
 #timeContainer, #pmTable, #loadContainer {
