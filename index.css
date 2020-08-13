@@ -52,8 +52,9 @@ h3, h4 {
     margin: auto;
     margin-bottom: 15px;
     margin-top: 15px;
-    width: 100%;
-    max-width: 500px;
+    /*width: 100%;
+    max-width: 500px; */
+    width: 500px; /* trying this cuz idk why i need above */
     box-shadow: 4px 4px 3px 2px rgba(0, 0, 0, 0.5);
     background-color: #EAc67A;
     color: #233237;
@@ -147,8 +148,15 @@ td {
     border: 0px;
 }
 
-#timeContainer, #pmTable {
+#timeContainer, #pmTable, #loadContainer {
     display: none;
+}
+
+#loadContainer a {
+    margin: auto;
+    width: 300px;
+    height: 100px;
+    background-color: #984B43;
 }
 
 #textContainer, #resContainer {
