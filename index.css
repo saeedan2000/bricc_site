@@ -152,7 +152,7 @@ td {
     color: #984B43;
     width: calc(100% / 7);
     font-size: 30px;
-    border: 3px solid #EAc67A;
+    border: 1px solid #EAc67A;
 }
 
 #timeContainer, #pmTable, #loadContainer {
