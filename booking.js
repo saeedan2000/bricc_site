@@ -362,9 +362,9 @@
     // this function is the onclick handler for the load button. It compiles all the user's choices
     // into an object, then sends that info to the server using an ajax call
     function clickLoad() {
-        let log = new Object();
+        let data = new FormData();
         let date = $("selectedDate").textContent.split(" / ");
-        log.date = date[2] + "-" + date[0] + "-" + date[1];
+        data.append("date", date[2] + "-" + date[0] + "-" + date[1]);
         let time = $("selectedHour").textContent.split(" ");
         let hr = parseInt(time[0]);
         if (hr == 12) {
@@ -373,13 +373,25 @@
         if (time[1] == "PM") {
             hr += 12;
         }
-        log.time = hr;
-        log.duration = parseInt($("selectedDuration").textContent);
-        log.laneType = document.querySelector(".selectedLaneTypeTile").textContent;
-        console.log(log);
+        data.append("time", hr);
+        data.append("duration", parseInt($("selectedDuration").textContent));
+        data.append("laneType", documen.querySelector(".selectedLaneTypeTile").textContent);
+        console.log("sending the following to server: " + data);
+        ajaxPostChoices(data);
     }
 
-    // IDEA: FIX THE UGLY BUTTONS for prev/next
+    // sends users choices to server in AJAX POST request
+    function ajaxPostChoices(data) {
+        let url = "http://briccwebapp-env.eba-ekqffpav.us-east-1.elasticbeanstalk.com/getAvailable.php"; 
+        fetch(url, {method: "POST", body: data})
+           .then(checkStatus)
+           .then(function(responseText) {
+                console.log(responseText);
+           })
+           .catch(function(error) {
+               console.log(error);
+           });
+    }
 
     window.onload = function() {
         ajaxInitInfo();

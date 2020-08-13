@@ -136,17 +136,6 @@ td {
 
 }
 
-/*.monthButton, .timeButton, .durationButton {
-    display: block;
-    font-size: 30px;
-    width: calc(100% / 7);
-    color: #233237;
-    background-color: #984B43;
-    text-align: center;
-    margin: 0px;
-    border: 0px;
-}  GOING TO REWRITE FOR BUTTON INSTEAD OF A */
-
 .monthButton, .timeButton, .durationButton {
     background-color: #233237;
     color: #984B43;
@@ -170,7 +159,6 @@ td {
     height: 70;
     color: #233237;
     font-size: 30px;
-    font-weight: bold;
     background-color: #EAc67A;
     border: 4px solid #984B43;
 }
