@@ -362,6 +362,7 @@
     // this function is the onclick handler for the load button. It compiles all the user's choices
     // into an object, then sends that info to the server using an ajax call
     function clickLoad() {
+        this.style.display = "none";
         let data = new FormData();
         let date = $("selectedDate").textContent.split(" / ");
         data.append("date", date[2] + "-" + date[0] + "-" + date[1]);
@@ -376,7 +377,6 @@
         data.append("time", hr);
         data.append("duration", parseInt($("selectedDuration").textContent));
         data.append("laneType", document.querySelector(".selectedLaneTypeTile").textContent);
-        console.log("sending the following to server: " + data);
         ajaxPostChoices(data);
     }
 
@@ -387,6 +387,7 @@
            .then(checkStatus)
            .then(function(responseText) {
                 console.log(responseText);
+                $("loadButton").style.dispay = "block";
            })
            .catch(function(error) {
                console.log(error);
@@ -395,7 +396,7 @@
 
     window.onload = function() {
         ajaxInitInfo();
-        $("prevMonthButton").onclick = prevMonth;
+        $("prevMonthBdutton").onclick = prevMonth;
         $("nextMonthButton").onclick = nextMonth;
         let timeButtons = document.querySelectorAll(".timeButton");
         timeButtons[0].onclick = toggleTime;
