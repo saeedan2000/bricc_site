@@ -13,6 +13,7 @@
         } else {
             #header("HTTP/1.1 400 Bad Request");
             header("Content-Type: text/plain");
+            echo("fat");
             print("Received invalid parameters from client. \n date: " + validateDate($_POST["date"]) + "\n time: " + validateTime($_POST["time"]) + 
                 "\n duration: " + validateDuration($_POST["duration"]) + "\n type: " + validateLaneType($_POST["laneType"]));
             die();
