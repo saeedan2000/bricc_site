@@ -7,12 +7,13 @@
         #validate parameters
         if (validateDate($_POST["date"]) && validateTime($_POST["time"]) && 
             validateDuration($_POST["duration"]) && validateLaneType($_POST["laneType"])) {
-                
+            
+            header("Content-Type: application/json");
             print(json_encode($_POST));
         } else {
             #header("HTTP/1.1 400 Bad Request");
             header("Content-Type: text/plain");
-            print ("Received invalid parameters from client. \n date: " + validateDate($_POST["date"]) + "\n time: " + validateTime($_POST["time"]) + 
+            print("Received invalid parameters from client. \n date: " + validateDate($_POST["date"]) + "\n time: " + validateTime($_POST["time"]) + 
                 "\n duration: " + validateDuration($_POST["duration"]) + "\n type: " + validateLaneType($_POST["laneType"]));
             die();
         }

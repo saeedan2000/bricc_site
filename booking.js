@@ -386,6 +386,7 @@
            .then(checkStatus)
            .then(function(responseText) {
                 console.log(responseText);
+                console.log(JSON.parse(responseText));
            })
            .catch(function(error) {
                console.log(error);
