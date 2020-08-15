@@ -13,7 +13,7 @@
         } else {
             #header("HTTP/1.1 400 Bad Request");
             header("Content-Type: text/plain");
-            echo(validateDate($_POST["date"]);
+            echo(validateDate($_POST["date"]));
             echo(validateTime($_POST["time"]));
             echo(validateDuration($_POST["duration"]));
             echo(validateLaneType($_POST["laneType"]));
