@@ -5,8 +5,11 @@
         isset($_POST["duration"]) && isset($_POST["laneType"])) {
 
         #validate parameters
-        if (validateDate($_POST["date"]) && validateTime($_POST["time"]) && 
-            validateDuration($_POST["duration"]) && validateLaneType($_POST["laneType"])) {
+        $time = intval($_POST["time"]);
+        $dur = intval($_POST["duration"]);
+        # MUST CHANGE THIS IF CHECK TO CHANGE THE MAX DURATION OF A BOOKING
+        if (validateDate($_POST["date"]) && $time <= 23 && $time >= 0 && 
+            $dur >= 1 && $dur <= 4 && validateLaneType($_POST["laneType"])) {
             
             header("Content-Type: application/json");
             print(json_encode($_POST));
@@ -38,28 +41,6 @@
     function validateDate($date, $format = 'Y-m-d') {
         $d = DateTime::createFromFormat($format, $date);
         return $d && $d->format($format) === $date;
-    }
-
-    # validates a start time given by the client
-    function validateTime($time) {
-        if (preg_match('^[0-9][0-9]$', $time) == 1) {
-            $intTime = intval($time);
-            if ($intTime <= 23 && $intTime >= 0) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    # validates a duration given by the client
-    function validateDuration($dur) {
-        if (preg_match('^[0-9]$', $dur) == 1) {
-            $intDur = intval($dur);
-            if ($intDur >= 1 && $intDur <= 4) {
-                return true;
-            }
-        }
-        return false;
     }
 
     #validates late type given by the client
