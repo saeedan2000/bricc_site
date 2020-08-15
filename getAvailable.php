@@ -14,18 +14,9 @@
             header("Content-Type: application/json");
             print(json_encode($_POST));
         } else {
-            #header("HTTP/1.1 400 Bad Request");
+            header("HTTP/1.1 400 Bad Request");
             header("Content-Type: text/plain");
-            echo("date");
-            echo(validateDate($_POST["date"]));
-            echo("time");
-            echo(gettype($_POST["time"]));
-            echo(validateTime($_POST["time"]));
-            echo("duration");
-            echo(gettype($_POST["duration"]));
-            echo(validateDuration($_POST["duration"]));
-            echo("lane");
-            echo(validateLaneType($_POST["laneType"]));
+            echo("Received Bad Parameters from Client");
             die();
         }
             
