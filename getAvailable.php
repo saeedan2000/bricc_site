@@ -16,8 +16,10 @@
             echo("date");
             echo(validateDate($_POST["date"]));
             echo("time");
+            echo(gettype($_POST["time"]));
             echo(validateTime($_POST["time"]));
             echo("duration");
+            echo(gettype($_POST["duration"]));
             echo(validateDuration($_POST["duration"]));
             echo("lane");
             echo(validateLaneType($_POST["laneType"]));
@@ -32,6 +34,7 @@
     }
 
     # take a date given by the client and makes sure it is valid
+    # Must add that date muist be greater than or equal to todays date IMPORTANT
     function validateDate($date, $format = 'Y-m-d') {
         $d = DateTime::createFromFormat($format, $date);
         return $d && $d->format($format) === $date;
@@ -41,7 +44,7 @@
     function validateTime($time) {
         if (preg_match('^[0-9][0-9]$', $time) == 1) {
             $intTime = intval($time);
-            if ($intTime < 23 && $intTime >= 0) {
+            if ($intTime <= 23 && $intTime >= 0) {
                 return true;
             }
         }
