@@ -1,33 +1,45 @@
 <?php
+# IT APPEARS THAT I SHOULD NOT USE DURATION IN THE DATABASE BECUASE IT MAKES IT HARD TO QUERY CLASHES, BETTER TO USE START and END I THINK.
 include_once "./config/database.php";
 # We have to validate everything that is coming from the client side
-# that means the date, the time, the lane type, the duration, everything
-if (isset($_POST) && isset($_POST["date"]) && isset($_POST["time"]) && 
-    isset($_POST["duration"]) && isset($_POST["laneType"])) {
+# that means the date, the start time, the lane type, the end time, everything
+if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) && 
+    isset($_POST["endTime"]) && isset($_POST["laneType"])) {
 
     #validate parameters
-    $time = intval($_POST["time"]);
-    $dur = intval($_POST["duration"]);
-    # MUST CHANGE THIS IF CHECK TO CHANGE THE MAX DURATION OF A BOOKING
-    if (validateDate($_POST["date"]) && $time <= 23 && $time >= 0 && 
-        $dur >= 1 && $dur <= 4 && validateLaneType($_POST["laneType"])) {
+    $start = intval($_POST["startTime"]);
+    $end = intval($_POST["endTime"]);
+    if (validateDate($_POST["date"]) && $start <= 22 && $start >= 0 && 
+        $end > $start && $end <= 23 && validateLaneType($_POST["laneType"])) {
         
         # here goes the logic for recommending potential reservations to client
         # first, get all reservations that clash with date, time, laneType
+        # also, find out how many lanes there are (of type chosen)
         $db = connectToDB();
         if ($_POST["laneType"] == 'Both') {
-            $stmt = $db->prepare('SELECT r.laneID, r.startTime, r.duration FROM Reservations AS r, Lanes
-                AS l WHERE r.laneID = l.laneID AND r.date = ? AND r.startTime <= ? AND r.duration');
-            $stmt->execute(array($_POST["date"]));
+            $lanes = $db->query('SELECT * FROM Lanes');
+            $reservations = $db->prepare('SELECT r.laneID, r.startTime, r.endTime FROM Reservations AS r WHERE 
+                r.date = ? AND (r.startTime < ? OR r.endTime > ?)');
+            $reservations->execute(array($_POST["date"]), $end, $start);
         } else {
-            $stmt = $db->prepare('SELECT r.laneID, r.startTime, r.duration FROM Reservations AS r, Lanes
-                AS l WHERE r.laneID = l.laneID AND l.type = ? AND r.date = ?');
-            $stmt->execute(array($_POST["laneType"], $_POST["date"]));
+            $lanes = $db->prepare('SELECT * FROM Lanes AS l WHERE l.type = ?');
+            $lanes->execute(array($_POST["laneType"]));
+            $reservations = $db->prepare('SELECT r.laneID, r.startTime, r.endTime FROM Reservations AS r, Lanes
+                AS l WHERE r.laneID = l.laneID AND l.type = ? AND r.date = ? AND (r.startTime < ? OR r.endTime > ?)');
+            $reservations->execute(array($_POST["laneType"], $_POST["date"], $end, $start));
         }
-        # I need to know ho
+        # this array will map each laneid to a type, start, and end time
+        $ret = $lanes->fetchAll();
+        foreach ($ret as $lane) {
+            $lane["startTime"] = $start;
+            $lane["endTime"] = $end;
+        }
+        foreach ($reservations as $res) {
+            unset($ret[$res["laneID"]]);
+        }
         
         header("Content-Type: application/json");
-        print(json_encode($_POST));
+        print(json_encode($ret));
     } else {
         header("HTTP/1.1 400 Bad Request");
         header("Content-Type: text/plain");

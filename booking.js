@@ -373,8 +373,8 @@
         if (time[1] == "PM") {
             hr += 12;
         }
-        data.append("time", hr);
-        data.append("duration", parseInt($("selectedDuration").textContent));
+        data.append("startTime", hr);
+        data.append("endTime", parseInt($("selectedDuration").textContent) + hr);
         data.append("laneType", document.querySelector(".selectedLaneTypeTile").textContent);
         ajaxPostChoices(data);
     }
