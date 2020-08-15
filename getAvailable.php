@@ -28,10 +28,20 @@
     }
 
     # take a date given by the client and makes sure it is valid
-    # Must add that date muist be greater than or equal to todays date IMPORTANT
+    # meaning it is in correct format and also >= todays date in seattle
     function validateDate($date, $format = 'Y-m-d') {
         $d = DateTime::createFromFormat($format, $date);
-        return $d && $d->format($format) === $date;
+        # if not a valid date, then return false
+        if (!($d && $d->format($format) === $date)) {
+            return false;
+        }
+        date_default_timezone_set('America/Los_Angeles');
+        $today = DateTime::createFromFormat($format, date($format));
+        # make sure clients date is not before today
+        if ($d < $today) {
+            return false;
+        }
+        return true;
     }
 
     #validates late type given by the client
