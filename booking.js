@@ -378,20 +378,19 @@
         data.append("laneType", document.querySelector(".selectedLaneTypeTile").textContent);
         console.log("date: " + date[2] + "-" + date[0] + "-" + date[1]);
         console.log("startTime: " + hr + ", endTime: " + (parseInt($("selectedDuration").textContent) + hr));
-        ajaxPostChoices(data);
+        let url = "http://briccwebapp-env.eba-ekqffpav.us-east-1.elasticbeanstalk.com/getAvailable.php";
+        ajaxPost(data, url, loadBookable, console.log);
     }
 
     // sends users choices to server in AJAX POST request
-    function ajaxPostChoices(data) {
-        let url = "http://briccwebapp-env.eba-ekqffpav.us-east-1.elasticbeanstalk.com/getAvailable.php"; 
+    function ajaxPost(data, url, handleResponse, handleError) {
         fetch(url, {method: "POST", body: data})
            .then(checkStatus)
            .then(function(responseText) {
-                console.log(responseText);
-                console.log(JSON.parse(responseText));
+                handleResponse(responseText)
            })
            .catch(function(error) {
-               console.log(error);
+               handleError(error);
            });
     }
 
