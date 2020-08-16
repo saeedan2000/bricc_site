@@ -405,9 +405,14 @@
     // called upon receiving server response containing bookable time slots matching customers
     // choices. this function loads those bookable time slots on the page.
     function loadBookable(response) {
+        // first clear the bookable table
+        let table = $("bookableTable");
+        while (table.childNodes.length > 1) {
+            table.removeChild(table.lastChild);
+        }
+        // now go through every bookable time slot and add it to table
         let lanes = JSON.parse(response);
         let flag = false;
-        let table = $("bookableTable");
         for (let l of lanes) {
             if (parseInt(l.endTime) > parseInt(l.startTime)) {
                 flag = true;
@@ -425,6 +430,7 @@
                 table.appendChild(tr);
             }
         }
+        // if there were any results from server, success, else fail
         if (flag) {
             $("loadSuccessText").style.display = "block";
             $("bookableContainer").style.display = "block";
@@ -443,6 +449,7 @@
 
     // IDEA: need spam protection for load button, maybe make it disappear into a loading... text for a bit
     // IDEA: currently if client chooses a day in the past, server throws 400 error, client gets no feedback. Improve?
+    // ISSUE: time gets deselected when you choose a different day, but load button remains... is this ok?
 
     window.onload = function() {
         ajaxInitInfo();
