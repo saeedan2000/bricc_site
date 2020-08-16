@@ -100,7 +100,7 @@ h3, h4 {
     border-collapse: collapse;
 }
 
-#calendarTable, #amTable, #pmTable, #laneTypeTable {
+#calendarTable, #amTable, #pmTable, #laneTypeTable td {
     height: 50px;
     text-align: center;
     border: 1px solid #984B43;
