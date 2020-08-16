@@ -394,6 +394,10 @@
            });
     }
 
+    function loadBookable(response) {
+        console.log(JSON.parse(response));
+    }
+
     // IDEA: need spam protection for load button, maybe make it disappear into a loading... text for a bit
     // NOTE: modifying max duration requires not only modding this file but also change the validate function
     // server side.
