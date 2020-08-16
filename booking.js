@@ -418,7 +418,7 @@
             if (parseInt(l.endTime) > parseInt(l.startTime)) {
                 let laneDesc = l.type + " " + lanes.indexOf(l);
                 let id = obj.date + "-" + l.startTime + "-" + l.endTime + "-" + laneDesc;
-                if ($(id) == null) { // only add to display if it doesn't already exist
+                if ($(id) != null) { // only add to display if it doesn't already exist
                     flag = true;
                     let tr = document.createElement("tr");
                     let lane = document.createElement("td");
