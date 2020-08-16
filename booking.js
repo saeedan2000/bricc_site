@@ -463,6 +463,7 @@
     // ISSUE: time gets deselected when you choose a different day, but load button remains... is this ok?
     //          well to be precise the tile gets deselected but the selection remains in top display... which is where it is pulled from in the end...
     // ISSUE: this whole load success text/ load fail text is terrible, make it one <p> and put different things in it.
+    // BIG ISSUE: selecting both is resulting in all lanes, even those with clashes.
 
     window.onload = function() {
         ajaxInitInfo();
