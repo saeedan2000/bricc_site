@@ -29,10 +29,15 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
             $reservations->execute(array($_POST["laneType"], $_POST["date"], $end, $start));
         }
         # this array will map each laneid to a type, start, and end time
-        $ret = $lanes->fetchAll();
-        foreach ($ret as $lane) {
-            $lane["startTime"] = $start;
-            $lane["endTime"] = $end;
+        $ret = array();
+        foreach ($lanes as $lane) {
+            $ret[$lane["laneID"]] = array(
+                "type" => $lane["type"],
+                "startTime" => $start,
+                "endTime" => $end
+            );
+            #$lane["startTime"] = $start;
+            #$lane["endTime"] = $end;
         }
         foreach ($reservations as $res) {
             unset($ret[$res["laneID"]]);
