@@ -377,7 +377,7 @@
         data.append("endTime", parseInt($("selectedDuration").textContent) + hr);
         data.append("laneType", document.querySelector(".selectedLaneTypeTile").textContent);
         console.log("date: " + date[2] + "-" + date[0] + "-" + date[1]);
-        console.log("startTime: " + hr ", endTime: " + (parseInt($("selectedDuration").textContent) + hr));
+        console.log("startTime: " + hr + ", endTime: " + (parseInt($("selectedDuration").textContent) + hr));
         ajaxPostChoices(data);
     }
 
