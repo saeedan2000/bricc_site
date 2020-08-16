@@ -444,7 +444,7 @@
     function clickBookable() {
         this.parentNode.removeChild(this);
         $("selectedContainer").style.display = "block";
-        $("selectedContainer").appendChild(this);
+        $("selectedTable").appendChild(this);
     }
 
     // IDEA: need spam protection for load button, maybe make it disappear into a loading... text for a bit
