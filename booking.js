@@ -364,7 +364,7 @@
     function clickLoad() {
         // this next bit makes the button disappear for a while, spam protection
         this.style.display = "none";
-        $("loadText").style.display = block;
+        $("loadText").style.display = "block";
         setTimeout(function(){
             $("loadButton").style.display = "block";
             $("loadText").style.display = "none";
