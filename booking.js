@@ -424,6 +424,7 @@
         }
         if (flag) {
             $("loadSuccessText").style.display = "block";
+            $("bookableContainer").style.display = "block";
         } else {
             $("loadFailText").style.display = "block"
         }
