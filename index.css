@@ -179,7 +179,7 @@ td {
     display: none;
 }
 
-#bookableContainer {
+#bookableContainer, #selectedContainer {
     display: none;
 }
 

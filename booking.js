@@ -419,6 +419,7 @@
                 tr.appendChild(lane);
                 tr.appendChild(start);
                 tr.appendChild(end);
+                tr.onclick = clickBookable;
                 table.appendChild(tr);
             }
         }
@@ -429,6 +430,13 @@
             $("loadFailText").style.display = "block"
         }
         console.log(JSON.parse(response));
+    }
+
+    // called when customer clicks a bookable time slot
+    function clickBookable() {
+        this.parentNode.removeChild(this);
+        $("selectedContainer").style.display = block;
+        $("selectedContainer").appendChild(this);
     }
 
     // IDEA: need spam protection for load button, maybe make it disappear into a loading... text for a bit
