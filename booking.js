@@ -399,8 +399,7 @@
     }
 
     // IDEA: need spam protection for load button, maybe make it disappear into a loading... text for a bit
-    // NOTE: modifying max duration requires not only modding this file but also change the validate function
-    // server side.
+    // IDEA: currently if client chooses a day in the past, server throws 400 error, client gets no feedback. Improve?
 
     window.onload = function() {
         ajaxInitInfo();

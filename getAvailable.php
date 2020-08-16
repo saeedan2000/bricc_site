@@ -1,5 +1,6 @@
 <?php
-# IT APPEARS THAT I SHOULD NOT USE DURATION IN THE DATABASE BECUASE IT MAKES IT HARD TO QUERY CLASHES, BETTER TO USE START and END I THINK.
+# BIG ISSUE: actually idk but currently we dont validate duration of booking as in end - start.
+# so possible somebody books 24 hours in one go?
 include_once "./config/database.php";
 # We have to validate everything that is coming from the client side
 # that means the date, the start time, the lane type, the end time, everything
@@ -10,7 +11,7 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
     $start = intval($_POST["startTime"]);
     $end = intval($_POST["endTime"]);
     if (validateDate($_POST["date"]) && $start <= 22 && $start >= 0 && 
-        $end > $start && $end <= 23 && validateLaneType($_POST["laneType"])) {
+        $end > $start && $end <= 24 && validateLaneType($_POST["laneType"])) {
         
         # here goes the logic for recommending potential reservations to client
         # first, get all reservations that clash with date, time, laneType
@@ -60,13 +61,13 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
 # take a date given by the client and makes sure it is valid
 # meaning it is in correct format and also >= todays date in seattle
 function validateDate($date, $format = 'Y-m-d') {
+    date_default_timezone_set('America/Los_Angeles');
+    $today = DateTime::createFromFormat($format, date($format));
     $d = DateTime::createFromFormat($format, $date);
     # if not a valid date, then return false
     if (!($d && $d->format($format) === $date)) {
         return false;
     }
-    date_default_timezone_set('America/Los_Angeles');
-    $today = DateTime::createFromFormat($format, date($format));
     # make sure clients date is not before today
     if ($d < $today) {
         return false;
