@@ -402,6 +402,8 @@
            });
     }
 
+    // called upon receiving server response containing bookable time slots matching customers
+    // choices. this function loads those bookable time slots on the page.
     function loadBookable(response) {
         let lanes = JSON.parse(response);
         let flag = false;
@@ -435,7 +437,7 @@
     // called when customer clicks a bookable time slot
     function clickBookable() {
         this.parentNode.removeChild(this);
-        $("selectedContainer").style.display = block;
+        $("selectedContainer").style.display = "block";
         $("selectedContainer").appendChild(this);
     }
 
