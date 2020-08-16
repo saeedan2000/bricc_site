@@ -410,16 +410,25 @@
         while (table.children.length > 1) {
             table.removeChild(table.lastChild);
         }
+
         // now go through every bookable time slot and add it to table
         let obj = JSON.parse(response);
         let lanes = obj.laneInfo;
-        let flag = false;
+        // did we get any results from server?
+        // if there were any results from server, success, else fail
+        if (lanes.length > 0) {
+            $("loadSuccessText").style.display = "block";
+            $("bookableContainer").style.display = "block";
+        } else {
+            $("loadFailText").style.display = "block"
+            $("bookableContainer").style.display = "none";
+        }
+
         for (let l of lanes) {
             if (parseInt(l.endTime) > parseInt(l.startTime)) {
                 let laneDesc = l.type + " " + lanes.indexOf(l);
                 let id = obj.date + "-" + l.startTime + "-" + l.endTime + "-" + laneDesc;
                 if ($(id) == null) { // only add to display if it doesn't already exist
-                    flag = true;
                     let tr = document.createElement("tr");
                     let lane = document.createElement("td");
                     lane.textContent = laneDesc;
@@ -439,13 +448,6 @@
                 }
             }
         }
-        // if there were any results from server, success, else fail
-        if (flag) {
-            $("loadSuccessText").style.display = "block";
-            $("bookableContainer").style.display = "block";
-        } else {
-            $("loadFailText").style.display = "block"
-        }
         console.log(JSON.parse(response));
     }
 
@@ -459,6 +461,7 @@
     // IDEA: currently if client chooses a day in the past, server throws 400 error, client gets no feedback. Improve?
     // ISSUE: time gets deselected when you choose a different day, but load button remains... is this ok?
     //          well to be precise the tile gets deselected but the selection remains in top display... which is where it is pulled from in the end...
+    // ISSUE: this whole load success text/ load fail text is terrible, make it one <p> and put different things in it.
 
     window.onload = function() {
         ajaxInitInfo();
