@@ -456,6 +456,7 @@
         this.parentNode.removeChild(this);
         $("selectedContainer").style.display = "block";
         $("selectedTable").appendChild(this);
+        this.onclick = null;
     }
 
     // IDEA: currently if client chooses a day in the past, server throws 400 error, client gets no feedback. Improve?
