@@ -362,6 +362,14 @@
     // this function is the onclick handler for the load button. It compiles all the user's choices
     // into an object, then sends that info to the server using an ajax call
     function clickLoad() {
+        // this next bit makes the button disappear for a while, spam protection
+        this.style.display = "none";
+        $("loadText").style.display = block;
+        setTimeout(function(){
+            $("loadButton").style.display = "block";
+            $("loadText").style.display = "none";
+        }, 3000);
+        // prepare post data
         let data = new FormData();
         let date = $("selectedDate").textContent.split(" / ");
         data.append("date", date[2] + "-" + date[0] + "-" + date[1]);
@@ -395,6 +403,18 @@
     }
 
     function loadBookable(response) {
+        let lanes = JSON.parse(response);
+        let flag = false;
+        for (let l of lanes) {
+            if (parseInt(l.endTime) > parseInt(l.startTime)) {
+                flag = true;
+            }
+        }
+        if (flag) {
+            $("loadSuccessText").style.display = "block";
+        } else {
+            $("loadFailText").style.display = "block"
+        }
         console.log(JSON.parse(response));
     }
 
