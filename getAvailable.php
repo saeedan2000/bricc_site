@@ -36,11 +36,9 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
                 "startTime" => $start,
                 "endTime" => $end
             );
-            #$lane["startTime"] = $start;
-            #$lane["endTime"] = $end;
         }
         foreach ($reservations as $res) {
-            unset($ret[$res["laneID"]]);
+            $ret[$res["laneID"]]["endTime"] = $start;
         }
         
         header("Content-Type: application/json");
