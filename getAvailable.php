@@ -10,7 +10,7 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
     #validate parameters
     $start = intval($_POST["startTime"]);
     $end = intval($_POST["endTime"]);
-    if (validateDate($_POST["date"]) && $start <= 22 && $start >= 0 && 
+    if (validateDate($_POST["date"]) && $start <= 23 && $start >= 0 && 
         $end > $start && $end <= 24 && validateLaneType($_POST["laneType"])) {
         
         # here goes the logic for recommending potential reservations to client
