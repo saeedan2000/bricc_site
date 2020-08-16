@@ -413,9 +413,9 @@
                 let lane = document.createElement("td");
                 lane.textContent = l.type + " " + lanes.indexOf(l);
                 let start = document.createElement("td");
-                start.textContent = lane.startTime;
+                start.textContent = l.startTime;
                 let end = document.createElement("td");
-                end.textContent = lane.endTime;
+                end.textContent = l.endTime;
                 tr.appendChild(lane);
                 tr.appendChild(start);
                 tr.appendChild(end);
