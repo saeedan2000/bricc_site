@@ -48,13 +48,11 @@ h3, h4 {
     text-align: center
 }
 
-#datePicker, #timePicker {
+#datePicker, #timePicker, #bookableContainer {
     margin: auto;
     margin-bottom: 15px;
     margin-top: 15px;
-    /*width: 100%;
-    max-width: 500px; */
-    width: 500px; /* trying this cuz idk why i need above */
+    width: 500px; 
     box-shadow: 4px 4px 3px 2px rgba(0, 0, 0, 0.5);
     background-color: #EAc67A;
     color: #233237;
@@ -96,13 +94,13 @@ h3, h4 {
     margin: 0px;
 }
 
-#calendarTable, #amTable, #pmTable, #laneTypeTable {
+#calendarTable, #amTable, #pmTable, #laneTypeTable, #bookableTable {
     width: 100%;
     border: 1px solid #984B43;
     border-collapse: collapse;
 }
 
-td {
+#calendarTable, #amTable, #pmTable, #laneTypeTable {
     height: 50px;
     text-align: center;
     border: 1px solid #984B43;
@@ -111,6 +109,10 @@ td {
 
 #calendarTable td {
     width: calc(100% / 7);
+}
+
+#bookableTable tr {
+    border: 1px solid #984B43;
 }
 
 #amTable td, #pmTable td {           /* TENTATIVE */
@@ -165,6 +167,10 @@ td {
 }
 
 #loadContainer p {
+    display: none;
+}
+
+#bookableContainer {
     display: none;
 }
 

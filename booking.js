@@ -368,7 +368,7 @@
         setTimeout(function(){
             $("loadButton").style.display = "block";
             $("loadText").style.display = "none";
-        }, 3000);
+        }, 1000);
         // prepare post data
         let data = new FormData();
         let date = $("selectedDate").textContent.split(" / ");
@@ -405,9 +405,21 @@
     function loadBookable(response) {
         let lanes = JSON.parse(response);
         let flag = false;
+        let table = $("bookableTable");
         for (let l of lanes) {
             if (parseInt(l.endTime) > parseInt(l.startTime)) {
                 flag = true;
+                let tr = document.createElement("tr");
+                let lane = document.createElement("td");
+                lane.textContent = l.type + " " + l.laneID;
+                let start = document.createElement("td");
+                start.textContent = lane.startTime;
+                let end = document.createElement("td");
+                end.textContent = lane.endTime;
+                tr.appendChild(lane);
+                tr.appendChild(start);
+                tr.appendChild(end);
+                table.appendChild(tr);
             }
         }
         if (flag) {
