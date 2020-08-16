@@ -100,7 +100,7 @@ h3, h4 {
     border-collapse: collapse;
 }
 
-#calendarTable td, #amTable td, #pmTable td, #laneTypeTable td {
+td {
     height: 50px;
     text-align: center;
     border: 1px solid #984B43;
@@ -109,6 +109,10 @@ h3, h4 {
 
 #calendarTable td {
     width: calc(100% / 7);
+}
+
+#bookableTable td {
+    border: 0px;
 }
 
 #bookableTable tr {
