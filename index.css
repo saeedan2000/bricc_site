@@ -111,7 +111,7 @@ td {
     width: calc(100% / 7);
 }
 
-#bookableTable, #selectedTable td {
+#bookableTable td, #selectedTable td {
     border: 0px;
 }
 

@@ -407,7 +407,7 @@
     function loadBookable(response) {
         // first clear the bookable table
         let table = $("bookableTable");
-        while (table.childNodes.length > 1) {
+        while (table.children.length > 1) {
             table.removeChild(table.lastChild);
         }
         // now go through every bookable time slot and add it to table
@@ -450,6 +450,7 @@
     // IDEA: need spam protection for load button, maybe make it disappear into a loading... text for a bit
     // IDEA: currently if client chooses a day in the past, server throws 400 error, client gets no feedback. Improve?
     // ISSUE: time gets deselected when you choose a different day, but load button remains... is this ok?
+    //          well to be precise the tile gets deselected but the selection remains in top display... which is where it is pulled from in the end...
 
     window.onload = function() {
         ajaxInitInfo();
