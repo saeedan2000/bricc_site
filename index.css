@@ -115,6 +115,11 @@ td {
     border: 0px;
 }
 
+#bookableTable th {
+    height: 50px;
+    font-size: 24px;
+}
+
 #bookableTable tr {
     border: 1px solid #984B43;
 }
