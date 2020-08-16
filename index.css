@@ -48,7 +48,7 @@ h3, h4 {
     text-align: center
 }
 
-#datePicker, #timePicker, #bookableContainer {
+#datePicker, #timePicker, #bookableContainer, #selectedContainer {
     margin: auto;
     margin-bottom: 15px;
     margin-top: 15px;
@@ -94,7 +94,7 @@ h3, h4 {
     margin: 0px;
 }
 
-#calendarTable, #amTable, #pmTable, #laneTypeTable, #bookableTable {
+#calendarTable, #amTable, #pmTable, #laneTypeTable, #bookableTable, #selectedTable {
     width: 100%;
     border: 1px solid #984B43;
     border-collapse: collapse;
@@ -111,16 +111,16 @@ td {
     width: calc(100% / 7);
 }
 
-#bookableTable td {
+#bookableTable, #selectedTable td {
     border: 0px;
 }
 
-#bookableTable th {
+#bookableTable th, #selectedTable th {
     height: 50px;
     font-size: 24px;
 }
 
-#bookableTable tr {
+#bookableTable tr, #selectedTable tr {
     border: 1px solid #984B43;
 }
 
