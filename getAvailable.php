@@ -19,13 +19,13 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
         if ($_POST["laneType"] == 'Both') {
             $lanes = $db->query('SELECT * FROM Lanes');
             $reservations = $db->prepare('SELECT r.laneID, r.startTime, r.endTime FROM Reservations AS r WHERE 
-                r.date = ? AND (r.startTime < ? OR r.endTime > ?)');
+                r.date = ? AND r.startTime < ? AND r.endTime > ?');
             $reservations->execute(array($_POST["date"]), $end, $start);
         } else {
             $lanes = $db->prepare('SELECT * FROM Lanes AS l WHERE l.type = ?');
             $lanes->execute(array($_POST["laneType"]));
             $reservations = $db->prepare('SELECT r.laneID, r.startTime, r.endTime FROM Reservations AS r, Lanes
-                AS l WHERE r.laneID = l.laneID AND l.type = ? AND r.date = ? AND (r.startTime < ? OR r.endTime > ?)');
+                AS l WHERE r.laneID = l.laneID AND l.type = ? AND r.date = ? AND r.startTime < ? AND r.endTime > ?');
             $reservations->execute(array($_POST["laneType"], $_POST["date"], $end, $start));
         }
         # this array will map each laneid to a type, start, and end time
