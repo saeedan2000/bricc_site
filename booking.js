@@ -411,23 +411,32 @@
             table.removeChild(table.lastChild);
         }
         // now go through every bookable time slot and add it to table
-        let lanes = JSON.parse(response);
+        let obj = JSON.parse(response);
+        let lanes = obj.laneInfo;
         let flag = false;
         for (let l of lanes) {
             if (parseInt(l.endTime) > parseInt(l.startTime)) {
-                flag = true;
-                let tr = document.createElement("tr");
-                let lane = document.createElement("td");
-                lane.textContent = l.type + " " + lanes.indexOf(l);
-                let start = document.createElement("td");
-                start.textContent = l.startTime;
-                let end = document.createElement("td");
-                end.textContent = l.endTime;
-                tr.appendChild(lane);
-                tr.appendChild(start);
-                tr.appendChild(end);
-                tr.onclick = clickBookable;
-                table.appendChild(tr);
+                let laneDesc = l.type + " " + lanes.indexOf(l);
+                let id = obj.date + "-" + l.startTime + "-" + l.endTime + "-" + laneDesc;
+                if ($(id) == null) { // only add to display if it doesn't already exist
+                    flag = true;
+                    let tr = document.createElement("tr");
+                    let lane = document.createElement("td");
+                    lane.textContent = laneDesc;
+                    let start = document.createElement("td");
+                    start.textContent = l.startTime;
+                    let end = document.createElement("td");
+                    end.textContent = l.endTime;
+                    let date = document.createElement("td");
+                    date.textContent = obj.date;
+                    tr.appendChild(lane);
+                    tr.appendChild(start);
+                    tr.appendChild(end);
+                    tr.appendChild(date);
+                    tr.onclick = clickBookable;
+                    tr.id = id;
+                    table.appendChild(tr);
+                }
             }
         }
         // if there were any results from server, success, else fail
@@ -451,6 +460,9 @@
     // IDEA: currently if client chooses a day in the past, server throws 400 error, client gets no feedback. Improve?
     // ISSUE: time gets deselected when you choose a different day, but load button remains... is this ok?
     //          well to be precise the tile gets deselected but the selection remains in top display... which is where it is pulled from in the end...
+    // MUST DO: add date to the selected/bookable, means must send date from server
+    // ISSUE: can keep reloading the same day and reselecting the same hour over and hour
+    // POSSIBLE SOLUTION: use ids to describe each bookable/selected
 
     window.onload = function() {
         ajaxInitInfo();

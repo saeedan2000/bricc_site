@@ -30,17 +30,21 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
             $reservations->execute(array($_POST["laneType"], $_POST["date"], $end, $start));
         }
         # this array will map each laneid to a type, start, and end time
-        $ret = array();
+        $laneInfo = array();
         foreach ($lanes as $lane) {
-            $ret[$lane["laneID"]] = array(
+            $laneInfo[$lane["laneID"]] = array(
                 "type" => $lane["type"],
                 "startTime" => $start,
                 "endTime" => $end
             );
         }
         foreach ($reservations as $res) {
-            $ret[$res["laneID"]]["endTime"] = $start;
+            $laneInfo[$res["laneID"]]["endTime"] = $start;
         }
+        $ret = array(
+            "laneInfo" => $laneInfo,
+            "date" => $_POST["date"]
+        );
         
         header("Content-Type: application/json");
         print(json_encode($ret));
