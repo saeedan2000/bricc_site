@@ -411,7 +411,7 @@
                 flag = true;
                 let tr = document.createElement("tr");
                 let lane = document.createElement("td");
-                lane.textContent = l.type + " " + l.laneID;
+                lane.textContent = l.type + " " + lanes.indexOf(l);
                 let start = document.createElement("td");
                 start.textContent = lane.startTime;
                 let end = document.createElement("td");
