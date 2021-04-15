@@ -42,7 +42,7 @@
     
     // This function makes an AJAX get request to pickerInfo.php when the page is first loaded
     function ajaxInitInfo() {
-        let url = "http://briccwebapp-env.eba-ekqffpav.us-east-1.elasticbeanstalk.com/pickerInfo.php"; 
+        let url = "http://briccsite-env-2.cc6s3rcj3k.us-east-2.elasticbeanstalk.com/pickerInfo.php"; 
         fetch(url)
            .then(checkStatus)
            .then(function(responseText) {
@@ -386,7 +386,7 @@
         data.append("laneType", document.querySelector(".selectedLaneTypeTile").textContent);
         console.log("date: " + date[2] + "-" + date[0] + "-" + date[1]);
         console.log("startTime: " + hr + ", endTime: " + (parseInt($("selectedDuration").textContent) + hr));
-        let url = "http://briccwebapp-env.eba-ekqffpav.us-east-1.elasticbeanstalk.com/getAvailable.php";
+        let url = "http://briccsite-env-2.cc6s3rcj3k.us-east-2.elasticbeanstalk.com/getAvailable.php";
         ajaxPost(data, url, loadBookable, console.log);
     }
 

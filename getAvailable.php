@@ -1,5 +1,4 @@
 <?php
-# TEMP CMNT TO TEST PIPELINE
 # BIG ISSUE: actually idk but currently we dont validate duration of booking as in end - start.
 # so possible somebody books 24 hours in one go?
 include_once "./config/database.php";
