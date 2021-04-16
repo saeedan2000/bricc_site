@@ -16,7 +16,7 @@
     }
     
     function ajaxCall(q) {
-        let url = "http://briccwebapp-env.eba-ekqffpav.us-east-1.elasticbeanstalk.com/admin.php?q=" + q; 
+        let url = "http://briccsite-env-2.cc6s3rcj3k.us-east-2.elasticbeanstalk.com/admin.php?q=" + q; 
         fetch(url)
            .then(checkStatus)
            .then(function(responseText) {
