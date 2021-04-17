@@ -51,9 +51,9 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
     } else {
         if (!validateDate($_POST["date"])) {
             $reason = "date";
-        } else if ($start <= 23 && $start >= 0 && $end > $start && $end <= 24) {
+        } else if (!($start <= 23 && $start >= 0 && $end > $start && $end <= 24)) {
             $reason = "time";
-        } else if (validateLaneType($_POST["laneType"])) {
+        } else if (!validateLaneType($_POST["laneType"])) {
             $reason = "lane";
         }
         header("HTTP/1.1 400 Bad Request1" . $reason);
