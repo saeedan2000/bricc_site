@@ -49,14 +49,14 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
         header("Content-Type: application/json");
         print(json_encode($ret));
     } else {
-        header("HTTP/1.1 400 Bad Request");
+        header("HTTP/1.1 400 Bad Request1");
         header("Content-Type: text/plain");
         echo("Received Bad Parameters from Client");
         die();
     }
         
 } else {
-    header("HTTP/1.1 400 Bad Request");
+    header("HTTP/1.1 400 Bad Request2");
     header("Content-Type: text/plain");
     print ("Received invalid parameters from client.");
     die();
