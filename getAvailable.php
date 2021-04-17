@@ -50,7 +50,7 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
         print(json_encode($ret));
     } else {
         if (!validateDate($_POST["date"])) {
-            $reason = "date";
+            $reason = "date" . $_POST["date"];
         } else if (!($start <= 23 && $start >= 0 && $end > $start && $end <= 24)) {
             $reason = "time";
         } else if (!validateLaneType($_POST["laneType"])) {
