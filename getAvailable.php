@@ -49,7 +49,14 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
         header("Content-Type: application/json");
         print(json_encode($ret));
     } else {
-        header("HTTP/1.1 400 Bad Request1");
+        if (!validateDate($_POST["date"])) {
+            $reason = "date";
+        } else if ($start <= 23 && $start >= 0 && $end > $start && $end <= 24) {
+            $reason = "time";
+        } else if (validateLaneType($_POST["laneType"])) {
+            $reason = "lane";
+        }
+        header("HTTP/1.1 400 Bad Request1" . $reason);
         header("Content-Type: text/plain");
         echo("Received Bad Parameters from Client");
         die();
