@@ -387,7 +387,7 @@
         console.log("date: " + date[2] + "-" + date[0] + "-" + date[1]);
         console.log("startTime: " + hr + ", endTime: " + (parseInt($("selectedDuration").textContent) + hr));
         let url = "http://briccsite-env-2.cc6s3rcj3k.us-east-2.elasticbeanstalk.com/getAvailable.php";
-        ajaxPost(data, url, loadBookable, console.log);
+        ajaxPost(data, url, console.log, console.log);              // should be load bookable but is log for debug
     }
 
     // sends users choices to server in AJAX POST request
