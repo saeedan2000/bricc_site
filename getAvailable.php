@@ -20,9 +20,8 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
         if ($_POST["laneType"] == 'Both') {
             print("fat");
             $lanes = $db->query('SELECT * FROM Lanes');
-            /*$reservations = $db->prepare('SELECT r.laneID FROM Reservations AS r WHERE 
-               r.date = ? AND r.startTime < ? AND r.endTime > ?');
-            $reservations->execute(array($_POST["date"]), $end, $start); */
+            $reservations = $db->prepare('SELECT r.laneID FROM Reservations AS r WHERE r.date = ? AND r.startTime < ? AND r.endTime > ?');
+            $reservations->execute(array($_POST["date"]), $end, $start);
         } else {
             $lanes = $db->prepare('SELECT * FROM Lanes AS l WHERE l.type = ?');
             $lanes->execute(array($_POST["laneType"]));
