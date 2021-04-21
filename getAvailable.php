@@ -1,4 +1,9 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
+
 # BIG ISSUE: actually idk but currently we dont validate duration of booking as in end - start.
 # so possible somebody books 24 hours in one go?
 include_once "./config/database.php";
@@ -21,7 +26,7 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
             print("fat");
             $lanes = $db->query('SELECT * FROM Lanes');
             $reservations = $db->prepare('SELECT r.laneID FROM Reservations AS r');
-            $reservations->execute(array($_POST["date"]), $end, $start);
+            $reservations->execute(); #array($_POST["date"]), $end, $start);
         } else {
             $lanes = $db->prepare('SELECT * FROM Lanes AS l WHERE l.type = ?');
             $lanes->execute(array($_POST["laneType"]));
