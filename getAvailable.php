@@ -23,7 +23,6 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
         # also, find out how many lanes there are (of type chosen)
         $db = connectToDB();
         if ($_POST["laneType"] == 'Both') {
-            print("fat");
             $lanes = $db->query('SELECT * FROM Lanes');
             $reservations = $db->prepare('SELECT r.laneID FROM Reservations AS r WHERE r.date = ? AND r.startTime < ? AND r.endTime > ?');
             $reservations->execute(array($_POST["date"], $end, $start));
@@ -40,13 +39,6 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
         //header("Content-Type: application/json");
         //print(json_encode($ret));
     } else {  // debug stuff here can be removed
-        if (!validateDate($_POST["date"])) {
-            $reason = "date" . $_POST["date"];
-        } else if (!($start <= 23 && $start >= 0 && $end > $start && $end <= 24)) {
-            $reason = "time";
-        } else if (!validateLaneType($_POST["laneType"])) {
-            $reason = "lane";
-        }
         header("HTTP/1.1 400 Bad Request1" . $reason);
         header("Content-Type: text/plain");
         echo("Received Bad Parameters from Client");
