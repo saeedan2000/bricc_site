@@ -66,6 +66,7 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
         foreach ($clashLanes as $laneID => $junk) {
             getFreeSlots($que, intval($laneID), $_POST["date"], $db, $start, $end, $laneInfo);
         }
+        // now pull the right number of freeSlots from the priority queue and put in ret
         for ($i = 0; $i < count($clashLanes); $i++) {
             $cur = $que->extract();
             array_push($ret, array($cur->laneName, $cur->start, $cur->end));
