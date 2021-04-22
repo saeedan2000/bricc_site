@@ -113,6 +113,8 @@ function trimFreeSlot (freeSlot $slot, int $start, int $end) {
     print("called trim with slot $slot->start , $slot->end and customer wants $start , $end ");
     $duration = $start - $end;
     print(" duration: $duration");
+    $slotDuration = $slot->end - $slot->start;
+    print(" slotduration: $slotDuration");
     if ($slot->end - $slot->start <= $duration) {
         return;
     } else {
