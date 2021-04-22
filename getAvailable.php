@@ -132,15 +132,15 @@ function getFreeSlots(SplPriorityQueue $que, string $laneID, string $date, PDO $
     $hours = $pdoSt->fetch(PDO::FETCH_ASSOC);
 
     $lastEnd = $hours["start"];
-    print (" starting time: " . $lastEnd);
     foreach($reservations as $reservation) {
         if (intval($reservation["startTime"]) > $lastEnd) {
             // there is a free block
             $freeSlot = new freeSlot($laneInfo[$laneID], $lastEnd, $reservation["startTime"]);
             // trim the free slot down to size;
+            print(" freeSlot before trim: " . $freeSlot->start . " " . $freeSlot->end);
             trimFreeSlot($freeSlot, $start, $end);
             $que->insert($freeSlot, slotValue($freeSlot, $start, $end));
-            print("one free slot: " . $freeSlot->start . " " . $freeSlot->end);
+            print(" slot after trim: " . $freeSlot->start . " " . $freeSlot->end);
         }
         $lastEnd = $reservation["endTime"];
     }
