@@ -111,7 +111,7 @@ function slotValue(freeSlot $slot, int $start, int $end) {
 // trims the free slot down to what the customer wants
 function trimFreeSlot (freeSlot $slot, int $start, int $end) {
     print("called trim with slot $slot->start , $slot->end and customer wants $start , $end ");
-    $duration = $start - $end;
+    $duration = $end - $start;
     print(" duration: $duration");
     $slotDuration = $slot->end - $slot->start;
     print(" slotduration: $slotDuration");
