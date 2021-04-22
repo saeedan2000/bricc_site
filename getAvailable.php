@@ -72,7 +72,6 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
         // now loop through the lanes with clashes, and for each, add its free blocks to the priority queue
         $que = new SplPriorityQueue(); // contains free blocks;
         foreach ($clashLanes as $laneID => $junk) {
-            print("we have a clash: " . $laneID);
             getFreeSlots($que, intval($laneID), $_POST["date"], $db, $start, $end, $laneInfo);
         }
         // now pull the right number of freeSlots from the priority queue and put in ret
