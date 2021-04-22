@@ -20,6 +20,7 @@ class freeSlot {
 # BIG ISSUE: actually idk but currently we dont validate duration of booking as in end - start.
 # so possible somebody books 24 hours in one go?
 # SPECIAL HOURS DOES NTO WORK RN ONLY DEFAULT HOURS
+# NOTE: the whole lane names thing is handled very clunkily rn imo
 include_once "./config/database.php";
 # We have to validate everything that is coming from the client side
 # that means the date, the start time, the lane type, the end time
@@ -130,14 +131,13 @@ function getFreeSlots(SplPriorityQueue $que, int $laneID, string $date, PDO $db,
             $freeSlot = new freeSlot($laneInfo[$laneID]["type"] . " " . $laneInfo[$laneID]["number"], $lastEnd, $reservation["startTime"]);
             // trim the free slot down to size;
             trimFreeSlot($freeSlot, $start, $end);
-            // add to que
             $que->insert($freeSlot, slotValue($freeSlot, $start, $end));
         }
+        $lastEnd = $reservation["endTime"];
     }
     // take care of edge case where free slot is after last reservation
     $closingTime = intval($hours["start"]) + intval($hours["num_hours"]);
     if ($closingTime > $lastEnd) {
-        // there is a free block
         $freeSlot = new freeSlot($laneInfo[$laneID]["type"] . " " . $laneInfo[$laneID]["number"], $lastEnd, $closingTime);
         // trim the free slot down to size;
         trimFreeSlot($freeSlot, $start, $end);
