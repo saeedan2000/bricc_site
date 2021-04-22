@@ -1,4 +1,5 @@
 <?php
+# PROB remove the special hours stuff
 include_once "./config/database.php";
 $db = connectToDB();
 # Get current date in PST
@@ -7,9 +8,9 @@ $today = date("Y-m-d");
 # get info from db
 $ret = array();
 $pdoSt = $db->query("SELECT h.start, h.num_hours FROM Hours AS h WHERE h.date = '1000-01-01';");
-$ret["default"] = $pdoSt->fetchAll()[0];
+$ret["default"] = $pdoSt->fetch(PDO::FETCH_ASSOC);
 $pdoSt = $db->query("SELECT * FROM Hours AS h WHERE h.date >= '{$today}';");
-$ret["specialHours"] = $pdoSt->fetchAll();
+$ret["specialHours"] = $pdoSt->fetch(PDO::FETCH_ASSOC);
 $ret["today"] = $today;
 unset($db);
 # Send response.
