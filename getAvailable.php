@@ -55,10 +55,12 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
         }
         // for any lanes that dont have a clash, add slot to ret
         $ret = array();
-        $laneInfo = $lanes->fetchAll(PDO::FETCH_ASSOC);
+        // maps from laneid to lane name
+        $laneInfo = array();
         foreach ($laneInfo as $lane) {
+            $laneInfo[$lane["laneID"]] = $lane["type"] . " " . $lane["number"];
             if (!$clashLanes[$lane["laneID"]]) {
-                array_push($ret, array($lane["type"] . " " . $lane["number"], $start, $end));
+                array_push($ret, array($laneInfo($lane["laneID"]), $start, $end));
             }
         }
 
@@ -117,7 +119,7 @@ function trimFreeSlot (freeSlot $slot, int $start, int $end) {
 }
 
 // fills que with all free slots for given lane in given day
-function getFreeSlots(SplPriorityQueue $que, int $laneID, string $date, PDO $db, int $start, int $end, array $laneInfo) {
+function getFreeSlots(SplPriorityQueue $que, string $laneID, string $date, PDO $db, int $start, int $end, array $laneInfo) {
     $reservations = $db->prepare("SELECT r.startTime, r.endTime FROM Reservations AS r WHERE r.laneID = ? AND r.date = ?");
     $reservations->execute(array($laneID, $date));
     $pdoSt = $db->query("SELECT h.start, h.num_hours FROM Hours AS h WHERE h.date = '1000-01-01'");
@@ -128,7 +130,7 @@ function getFreeSlots(SplPriorityQueue $que, int $laneID, string $date, PDO $db,
     foreach($reservations as $reservation) {
         if (intval($reservation["startTime"]) > $lastEnd) {
             // there is a free block
-            $freeSlot = new freeSlot($laneInfo[$laneID]["type"] . " " . $laneInfo[$laneID]["number"], $lastEnd, $reservation["startTime"]);
+            $freeSlot = new freeSlot($laneInfo[$laneID], $lastEnd, $reservation["startTime"]);
             // trim the free slot down to size;
             trimFreeSlot($freeSlot, $start, $end);
             $que->insert($freeSlot, slotValue($freeSlot, $start, $end));
@@ -138,7 +140,7 @@ function getFreeSlots(SplPriorityQueue $que, int $laneID, string $date, PDO $db,
     // take care of edge case where free slot is after last reservation
     $closingTime = intval($hours["start"]) + intval($hours["num_hours"]);
     if ($closingTime > $lastEnd) {
-        $freeSlot = new freeSlot($laneInfo[$laneID]["type"] . " " . $laneInfo[$laneID]["number"], $lastEnd, $closingTime);
+        $freeSlot = new freeSlot($laneInfo[$laneID], $lastEnd, $closingTime);
         // trim the free slot down to size;
         trimFreeSlot($freeSlot, $start, $end);
         // add to que
