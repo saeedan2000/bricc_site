@@ -9,7 +9,7 @@ class freeSlot {
     public int $start;
     public int $end;
 
-    public function __construct(String $laneName, int $start, int $end) {
+    public function __construct(string $laneName, int $start, int $end) {
         $this->laneName = $laneName;
         $this->start = $start;
         $this->end = $end;
@@ -112,6 +112,7 @@ function slotValue(freeSlot $slot, int $start, int $end) {
 function trimFreeSlot (freeSlot $slot, int $start, int $end) {
     print("called trim with slot $slot->start , $slot->end and customer wants $start , $end ");
     $duration = $start - $end;
+    print(" duration: $duration");
     if ($slot->end - $slot->start <= $duration) {
         return;
     } else {
