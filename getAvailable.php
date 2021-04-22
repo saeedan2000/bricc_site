@@ -110,6 +110,7 @@ function slotValue(freeSlot $slot, int $start, int $end) {
 
 // trims the free slot down to what the customer wants
 function trimFreeSlot (freeSlot $slot, int $start, int $end) {
+    print("called trim with slot $slot->start , $slot->end and customer wants $start , $end ");
     $duration = $start - $end;
     if ($slot->end - $slot->start <= $duration) {
         return;
@@ -137,7 +138,6 @@ function getFreeSlots(SplPriorityQueue $que, string $laneID, string $date, PDO $
             // there is a free block
             $freeSlot = new freeSlot($laneInfo[$laneID], $lastEnd, intval($reservation["startTime"]));
             // trim the free slot down to size;
-            print(" freeSlot before trim: " . $freeSlot->start . " " . $freeSlot->end);
             trimFreeSlot($freeSlot, $start, $end);
             $que->insert($freeSlot, slotValue($freeSlot, $start, $end));
             print(" slot after trim: " . $freeSlot->start . " " . $freeSlot->end);
