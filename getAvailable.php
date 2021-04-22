@@ -34,10 +34,12 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
             $clashes->execute(array($_POST["laneType"], $_POST["date"], $end, $start));
         }
         // build set (actually an assoc array with keys as elements of set) of lanes with clashes
+        $clashLanes = array();
         foreach ($clashes as $clash) {
             $clashLanes[$clash["laneID"]] = true;
         }
         // for any lanes that dont have a clash, add slot to ret
+        $ret = array();
         foreach ($lanes as $lane) {
             if (!$clashLanes[$lane["laneID"]]) {
                 array_push($ret, array($lane["type"] . " " . $lane["number"], $start, $end));
