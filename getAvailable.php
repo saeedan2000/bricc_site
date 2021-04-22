@@ -10,9 +10,9 @@ class freeSlot {
     public $end;
 
     public function __construct(String $laneName, int $start, int $end) {
-        $this->$laneName = $laneName;
-        $this->$start = $start;
-        $this->$end = $end;
+        $this->laneName = $laneName;
+        $this->start = $start;
+        $this->end = $end;
     }
 }
 
