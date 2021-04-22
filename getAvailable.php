@@ -5,9 +5,9 @@ ini_set('display_errors', 'On');
 
 // represents a free slot of time for a certain lane
 class freeSlot {
-    public $laneName;
-    public $start;
-    public $end;
+    public string $laneName;
+    public int $start;
+    public int $end;
 
     public function __construct(String $laneName, int $start, int $end) {
         $this->laneName = $laneName;
