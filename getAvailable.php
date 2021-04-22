@@ -105,7 +105,9 @@ function slotValue(freeSlot $slot, int $start, int $end) {
     } elseif ($slot->end > $end + 1) {
         $timeDiff = $slot->end - ($end + 1);
     }
-    return 100.0 - (0.7 * $durationDiff) + (1.0 * $timeDiff);
+    $value = 100.0 - (0.7 * $durationDiff) + (1.0 * $timeDiff);
+    print("slotValue: $value");
+    return $value;
 }
 
 // trims the free slot down to what the customer wants
