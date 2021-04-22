@@ -68,8 +68,7 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
         }
         for ($i = 0; $i < count($clashLanes); $i++) {
             $cur = $que->extract();
-            $curLane = $laneInfo[$laneID]["type"] . " " . $laneInfo[$laneID]["number"];
-            array_push($ret, array($curLane, $cur->start, $cur->end));
+            array_push($ret, array($cur->laneName, $cur->start, $cur->end));
         }
         
         header("Content-Type: application/json");
@@ -97,7 +96,7 @@ function slotValue(freeSlot $slot, int $start, int $end) {
     } elseif ($slot->end > $end + 1) {
         $timeDiff = $slot->end - ($end + 1);
     }
-    return 100 - ($durationDiff + $timeDiff);
+    return 100.0 - (0.7 * $durationDiff) + (1.0 * $timeDiff);
 }
 
 // trims the free slot down to what the customer wants
