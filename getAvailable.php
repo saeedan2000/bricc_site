@@ -24,18 +24,28 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
         $db = connectToDB();
         if ($_POST["laneType"] == 'Both') {
             $lanes = $db->query('SELECT * FROM Lanes');
-            $reservations = $db->prepare('SELECT r.laneID FROM Reservations AS r WHERE r.date = ? AND r.startTime < ? AND r.endTime > ?');
-            $reservations->execute(array($_POST["date"], $end, $start));
+            $clashes = $db->prepare('SELECT r.laneID FROM Reservations AS r WHERE r.date = ? AND r.startTime < ? AND r.endTime > ?');
+            $clashes->execute(array($_POST["date"], $end, $start));
         } else {
             $lanes = $db->prepare('SELECT * FROM Lanes AS l WHERE l.type = ?');
             $lanes->execute(array($_POST["laneType"]));
-            $reservations = $db->prepare('SELECT r.laneID FROM Reservations AS r, Lanes
+            $clashes = $db->prepare('SELECT r.laneID FROM Reservations AS r, Lanes
                 AS l WHERE r.laneID = l.laneID AND l.type = ? AND r.date = ? AND r.startTime < ? AND r.endTime > ?');
-            $reservations->execute(array($_POST["laneType"], $_POST["date"], $end, $start));
+            $clashes->execute(array($_POST["laneType"], $_POST["date"], $end, $start));
+        }
+        // build set (actually an assoc array with keys as elements of set) of lanes with clashes
+        foreach ($clashes as $clash) {
+            $clashLanes[$clash["laneID"]] = true;
+        }
+        // for any lanes that dont have a clash, add slot to ret
+        foreach ($lanes as $lane) {
+            if (!$clashLanes[$lane["laneID"]]) {
+                array_push($ret, array($lane["type"] . " " . $lane["number"], $start, $end));
+            }
         }
         
-        header("Content-Type: text/plain");
-        print("concluded");
+        header("Content-Type: application/json");
+        print(json_encode($ret));
         //header("Content-Type: application/json");
         //print(json_encode($ret));
     } else {  // debug stuff here can be removed
