@@ -126,6 +126,7 @@ function trimFreeSlot (freeSlot $slot, int $start, int $end) {
         // trim from top
         $slot->end -= ($slot->end - $slot->start) - $duration;
     }
+    print(" slot after trim: " . $slot->start . " " . $slot->end);
 }
 
 // fills que with all free slots for given lane in given day
@@ -144,7 +145,6 @@ function getFreeSlots(SplPriorityQueue $que, string $laneID, string $date, PDO $
             // trim the free slot down to size;
             trimFreeSlot($freeSlot, $start, $end);
             $que->insert($freeSlot, slotValue($freeSlot, $start, $end));
-            print(" slot after trim: " . $freeSlot->start . " " . $freeSlot->end);
         }
         $lastEnd = $reservation["endTime"];
     }
