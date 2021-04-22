@@ -131,11 +131,11 @@ function getFreeSlots(SplPriorityQueue $que, string $laneID, string $date, PDO $
     // need to know hours
     $hours = $pdoSt->fetch(PDO::FETCH_ASSOC);
 
-    $lastEnd = $hours["start"];
+    $lastEnd = intval($hours["start"]);
     foreach($reservations as $reservation) {
         if (intval($reservation["startTime"]) > $lastEnd) {
             // there is a free block
-            $freeSlot = new freeSlot($laneInfo[$laneID], $lastEnd, $reservation["startTime"]);
+            $freeSlot = new freeSlot($laneInfo[$laneID], $lastEnd, intval($reservation["startTime"]));
             // trim the free slot down to size;
             print(" freeSlot before trim: " . $freeSlot->start . " " . $freeSlot->end);
             trimFreeSlot($freeSlot, $start, $end);
