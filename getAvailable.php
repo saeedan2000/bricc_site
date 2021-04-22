@@ -99,7 +99,7 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
 // function which calculates the weight of a free slot for the priority queue
 function slotValue(freeSlot $slot, int $start, int $end) {
     $durationDiff = abs(($slot->end - $slot->start) - ($end - $start)); // prob dont need abs since it will always be less
-    $timeDiff = 0;
+    $timeDiff = 0.0;
     if ($slot->start < $start) {
         $timeDiff = $start - $slot->start;
     } elseif ($slot->end > $end + 1) {
