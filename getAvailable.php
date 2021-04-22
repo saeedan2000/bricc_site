@@ -117,8 +117,8 @@ function trimFreeSlot (freeSlot $slot, int $start, int $end) {
     } else {
         // trim from bottom
         if ($slot->start < $start) {
-            $slot->start += min(($slot->end - $slot->start) - $duration, $start - $slot->start);
             print("trimmed from bottom by: " . min(($slot->end - $slot->start) - $duration, $start - $slot->start));
+            $slot->start += min(($slot->end - $slot->start) - $duration, $start - $slot->start);
         }
         // trim from top
         $slot->end -= ($slot->end - $slot->start) - $duration;
