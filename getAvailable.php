@@ -67,6 +67,8 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
             }
         }
 
+        print(json_encode($ret));
+
         // now loop through the lanes with clashes, and for each, add its free blocks to the priority queue
         $que = new SplPriorityQueue(); // contains free blocks;
         foreach ($clashLanes as $laneID => $junk) {
