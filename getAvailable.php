@@ -48,6 +48,9 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
                 AS l WHERE r.laneID = l.laneID AND l.type = ? AND r.date = ? AND r.startTime < ? AND r.endTime > ?');
             $clashes->execute(array($_POST["laneType"], $_POST["date"], $end, $start));
         }
+
+        header("Content-Type: application/json"); // for debug
+
         // build set (actually an assoc array with keys as elements of set) of lanes with clashes
         $clashLanes = array();
         foreach ($clashes as $clash) {
@@ -57,7 +60,7 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
         $ret = array();
         // maps from laneid to lane name
         $laneInfo = array();
-        foreach ($laneInfo as $lane) {
+        foreach ($lanes as $lane) {
             $laneInfo[$lane["laneID"]] = $lane["type"] . " " . $lane["number"];
             if (!$clashLanes[$lane["laneID"]]) {
                 array_push($ret, array($laneInfo($lane["laneID"]), $start, $end));
@@ -74,8 +77,7 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
             $cur = $que->extract();
             array_push($ret, array($cur->laneName, $cur->start, $cur->end));
         }
-        
-        header("Content-Type: application/json");
+
         print(json_encode($ret));
     } else {  // debug stuff here can be removed
         header("HTTP/1.1 400 Bad Request1" . $reason);
