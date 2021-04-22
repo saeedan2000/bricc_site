@@ -132,6 +132,7 @@ function getFreeSlots(SplPriorityQueue $que, string $laneID, string $date, PDO $
     $hours = $pdoSt->fetch(PDO::FETCH_ASSOC);
 
     $lastEnd = $hours["start"];
+    print (" starting time: " . $lastEnd);
     foreach($reservations as $reservation) {
         if (intval($reservation["startTime"]) > $lastEnd) {
             // there is a free block
