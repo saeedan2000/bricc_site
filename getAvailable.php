@@ -20,7 +20,7 @@ class freeSlot {
 # BIG ISSUE: actually idk but currently we dont validate duration of booking as in end - start.
 # so possible somebody books 24 hours in one go?
 # SPECIAL HOURS DOES NTO WORK RN ONLY DEFAULT HOURS
-# NOTE: the whole lane names thing is handled very clunkily rn imo
+# NOTE: MAY CURRENTLY RECOMMEND HOURS BEFORE CURRENT TIME
 include_once "./config/database.php";
 # We have to validate everything that is coming from the client side
 # that means the date, the start time, the lane type, the end time
@@ -68,8 +68,6 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
                 $index++;
             }
         }
-
-        print(json_encode($ret));
 
         // now loop through the lanes with clashes, and for each, add its free blocks to the priority queue
         $que = new SplPriorityQueue(); // contains free blocks;
