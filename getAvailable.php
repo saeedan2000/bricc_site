@@ -110,23 +110,20 @@ function slotValue(freeSlot $slot, int $start, int $end) {
 
 // trims the free slot down to what the customer wants
 function trimFreeSlot (freeSlot $slot, int $start, int $end) {
-    print("called trim with slot $slot->start , $slot->end and customer wants $start , $end ");
+    print("called trim with slot $slot->start , $slot->end and customer wants $start , $end \n");
     $duration = $end - $start;
-    print(" duration: $duration");
     $slotDuration = $slot->end - $slot->start;
-    print(" slotduration: $slotDuration");
     if ($slot->end - $slot->start <= $duration) {
         return;
     } else {
         // trim from bottom
         if ($slot->start < $start) {
-            print("first term of min" . (($slot->end - $slot->start) - $duration));
             $slot->start += min(($slot->end - $slot->start) - $duration, $start - $slot->start);
         }
         // trim from top
         $slot->end -= ($slot->end - $slot->start) - $duration;
     }
-    print(" slot after trim: " . $slot->start . " " . $slot->end);
+    print(" slot after trim: " . $slot->start . " " . $slot->end . "\n");
 }
 
 // fills que with all free slots for given lane in given day
