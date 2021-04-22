@@ -60,10 +60,12 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
         $ret = array();
         // maps from laneid to lane name
         $laneInfo = array();
+        $index = 0;
         foreach ($lanes as $lane) {
             $laneInfo[$lane["laneID"]] = $lane["type"] . " " . $lane["number"];
             if (!$clashLanes[$lane["laneID"]]) {
-                array_push($ret, array($laneInfo($lane["laneID"]), $start, $end));
+                $ret[$index] = array($laneInfo[$lane["laneID"]], $start, $end);
+                $index++;
             }
         }
 
