@@ -63,7 +63,7 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
         $index = 0;
         foreach ($lanes as $lane) {
             $laneInfo[$lane["laneID"]] = $lane["type"] . " " . $lane["number"];
-            if (!$clashLanes[$lane["laneID"]]) {
+            if (!isset($clashLanes[$lane["laneID"]])) {
                 $ret[$index] = array($laneInfo[$lane["laneID"]], $start, $end);
                 $index++;
             }
@@ -82,7 +82,7 @@ if (isset($_POST) && isset($_POST["date"]) && isset($_POST["startTime"]) &&
 
         print(json_encode($ret));
     } else {  // debug stuff here can be removed
-        header("HTTP/1.1 400 Bad Request1" . $reason);
+        header("HTTP/1.1 400 Bad Request1");
         header("Content-Type: text/plain");
         echo("Received Bad Parameters from Client");
         die();

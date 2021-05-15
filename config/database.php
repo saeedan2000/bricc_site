@@ -1,5 +1,6 @@
 <?php
 # This file contains the code used to connect to the database using PDO
+/*
 $dbhost = $_SERVER['RDS_HOSTNAME'];
 $dbport = $_SERVER['RDS_PORT'];
 $dbname = $_SERVER['RDS_DB_NAME'];
@@ -7,20 +8,21 @@ $charset = 'utf8' ;
 
 $dsn = "mysql:host={$dbhost};port={$dbport};dbname={$dbname};charset={$charset}";
 $username = $_SERVER['RDS_USERNAME'];
-$password = $_SERVER['RDS_PASSWORD'];
+$password = $_SERVER['RDS_PASSWORD']; */ # MOD for local vs AWS
 
 function connectToDB() {
     # Construct PDO object
+    /*
     global $dbhost;
     global $dbport;
     global $dbname;
     global $charset;
     global $dsn;
     global $username;
-    global $password;
+    global $password; */ # MOD for local vs AWS
     try
     {
-        $db = new PDO($dsn, $username, $password);
+        $db = new PDO('mysql:host=localhost;dbname=briccdb', 'saeedan', 'wyandotte'); # PDO($dsn, $username, $password); MOD for local vs AWS
     }
 
     catch(Exception $e)
